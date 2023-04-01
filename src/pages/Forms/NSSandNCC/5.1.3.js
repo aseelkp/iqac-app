@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormWrapper from "../components/FormWrapper";
+import NccStepper from "./components/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfProgram: Yup.string().required("Name is required"),
@@ -51,6 +52,7 @@ function nccNss() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold">NCC and NSS</h1>
+      <NccStepper step={2} />
       <p>
         <span className="font-bold">5.1.3</span> Capacity building and skills
         enhancement initiatives taken by the institution include the following:
@@ -154,7 +156,7 @@ function nccNss() {
         </form>
       </FormWrapper>
 
-      {tableData && (
+      {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
           <table className="w-full">
             <thead className="border-b-2 border-blue-700">

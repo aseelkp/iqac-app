@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import FormWrapper from "../components/FormWrapper";
+import NccStepper from "./components/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -39,9 +42,11 @@ function nccNss() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">NCC and NSS</h1>
+      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
+      <NccStepper step={0} />
+
       <p className="mb-3">
-        3.4.2 Number of awards and recognitions received for extension
+      <span className="font-bold">3.4.2</span> Number of awards and recognitions received for extension
         activities from government/ government recognized bodies during the
         year.
       </p>
@@ -105,26 +110,34 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={6}>
-              <TextField
-                type="number"
-                fullWidth
-                variant="outlined"
+            <DatePicker
+                views={["year"]}
+                openTo="year"
                 id="yearOfAward"
                 name="yearOfAward"
-                label="Year of Award"
-                value={formik.values.yearOfAward}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.yearOfAward &&
-                  Boolean(formik.errors.yearOfAward)
-                }
-                helperText={
-                  formik.touched.yearOfAward && formik.errors.yearOfAward
-                }
+                label="Year of activity"
+                value={formik.values.yearOfAward ? new Date(formik.values.yearOfAward, 0, 1) : null}
+                onChange={(newValue) => {
+                  const selectedYear = newValue.getFullYear();
+                  formik.setFieldValue("yearOfAward", selectedYear);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    variant: "outlined",
+                    error:
+                      formik.touched.yearOfAward &&
+                      Boolean(formik.errors.yearOfAward),
+                    helperText:
+                      formik.touched.yearOfAward &&
+                      formik.errors.yearOfAward,
+                  },
+                }}
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" color="info" type="submit">
+              <Button variant="contained" endIcon={<AddIcon />} color="primary" type="submit">
                 Add
               </Button>
             </Grid>
@@ -132,7 +145,7 @@ function nccNss() {
         </form>
       </FormWrapper>
 
-      {tableData && (
+      {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
         <table className="w-full">
           <thead className="border-b-2 border-blue-700">

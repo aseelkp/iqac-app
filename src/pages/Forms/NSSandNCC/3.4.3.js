@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormWrapper from "../components/FormWrapper";
+import NccStepper from "./components/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -43,6 +45,7 @@ function nccNss() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold">NCC and NSS</h1>
+      <NccStepper step={1} />
       <p className="mb-3">
         <span className="font-bold">3.4.3</span> Number of extension and
         outreach Programmes conducted by the institution through NSS/
@@ -153,7 +156,7 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" color="info" type="submit">
+              <Button variant="contained" endIcon={<AddIcon />} color="info" type="submit">
                 Add
               </Button>
             </Grid>
@@ -161,7 +164,7 @@ function nccNss() {
         </form>
       </FormWrapper>
 
-      {tableData && (
+      {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
           <table className="w-full">
             <thead className="border-b-2 border-blue-700">
