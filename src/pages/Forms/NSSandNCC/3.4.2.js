@@ -1,8 +1,11 @@
-import React from "react";
-import { Grid, Paper, TextField, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, TextField, Button, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+import FormWrapper from "../components/FormWrapper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -21,9 +24,18 @@ function nccNss() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      setTableData([...tableData, values]);
+      formik.resetForm();
     },
   });
+
+  const [tableData, setTableData] = useState([]);
+
+  const handleDelete = (index) => {
+    const data = [...tableData];
+    data.splice(index, 1);
+    setTableData(data);
+  };
 
   return (
     <div className="p-8">
@@ -34,9 +46,9 @@ function nccNss() {
         year.
       </p>
 
-      <Paper elevation={5} className="p-4">
+      <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={2}>
+          <Grid container spacing={2}>
             <Grid item md={6}>
               <TextField
                 fullWidth
@@ -116,9 +128,43 @@ function nccNss() {
                 Add
               </Button>
             </Grid>
-        </Grid>
+          </Grid>
         </form>
-      </Paper>
+      </FormWrapper>
+
+      {tableData && (
+        <div className="w-full mt-4 p-6">
+        <table className="w-full">
+          <thead className="border-b-2 border-blue-700">
+            <tr>
+              <th className="p-2">Name of the activity</th>
+              <th className="p-2">Name of the Award/ recognition</th>
+              <th className="p-2">
+                Name of the Awarding government/ government recognised bodies
+              </th>
+              <th className="p-2">Year of Award</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((data, index) => {
+              return (
+                <tr key={index}>
+                  <td className="p-2">{data.nameOfActivity}</td>
+                  <td className="p-2">{data.nameOfAward}</td>
+                  <td className="p-2">{data.nameOfAwardingBody}</td>
+                  <td className="p-2">{data.yearOfAward}</td>
+                  <td className="p-2">
+                    <IconButton aria-label="delete" color="error" onClick={() => handleDelete(index
+                    )}>
+                      <Delete />
+                    </IconButton>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>)}
     </div>
   );
 }
