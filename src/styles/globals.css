@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.MuiPaper-rounded{
+    border-radius: 10px;
+    background-color: rgb(245, 251, 252);
+}
