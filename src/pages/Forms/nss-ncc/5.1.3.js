@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -6,8 +7,8 @@ import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../components/FormWrapper";
-import NccStepper from "./components/NccStepper";
+import FormWrapper from "../../../components/FormWrapper";
+import NccStepper from "../../../components/nss-ncc/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfProgram: Yup.string().required("Name is required"),
@@ -50,8 +51,8 @@ function nccNss() {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">NCC and NSS</h1>
+    <div className="p-8 min-h-screen">
+      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
       <NccStepper step={2} />
       <p>
         <span className="font-bold">5.1.3</span> Capacity building and skills
@@ -191,6 +192,18 @@ function nccNss() {
           </table>
         </div>
       )}
+      <div className="flex justify-end mt-4">
+        <Link href="/Forms/nss-ncc/3.4.3">
+          <Button variant="contained" color="info" className="mr-4">
+            Back
+          </Button>
+        </Link>
+        <Link href="/Forms/nss-ncc/5.1.4">
+          <Button variant="contained" color="info">
+            Save and Continue
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

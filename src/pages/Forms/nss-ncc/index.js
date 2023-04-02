@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Link from "next/link";
+
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -7,8 +9,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import FormWrapper from "../components/FormWrapper";
-import NccStepper from "./components/NccStepper";
+import FormWrapper from "../../../components/FormWrapper";
+import NccStepper from "../../../components/nss-ncc/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -137,7 +139,7 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" endIcon={<AddIcon />} color="primary" type="submit">
+              <Button variant="contained" endIcon={<AddIcon />} color="info" type="submit">
                 Add
               </Button>
             </Grid>
@@ -178,6 +180,13 @@ function nccNss() {
           </tbody>
         </table>
       </div>)}
+      <div className="flex justify-end mt-4">
+      <Link href="/Forms/nss-ncc/3.4.3">
+      <Button variant="contained" color="info">
+        Save and Continue
+      </Button>
+      </Link>
+      </div>
     </div>
   );
 }

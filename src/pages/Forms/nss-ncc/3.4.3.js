@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../components/FormWrapper";
-import NccStepper from "./components/NccStepper";
+import FormWrapper from "../../../components/FormWrapper";
+import NccStepper from "../../../components/nss-ncc/NccStepper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -44,7 +45,7 @@ function nccNss() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">NCC and NSS</h1>
+      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
       <NccStepper step={1} />
       <p className="mb-3">
         <span className="font-bold">3.4.3</span> Number of extension and
@@ -156,7 +157,12 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" endIcon={<AddIcon />} color="info" type="submit">
+              <Button
+                variant="contained"
+                endIcon={<AddIcon />}
+                color="info"
+                type="submit"
+              >
                 Add
               </Button>
             </Grid>
@@ -201,6 +207,18 @@ function nccNss() {
           </table>
         </div>
       )}
+      <div className="flex justify-end mt-4">
+        <Link href="/Forms/nss-ncc">
+          <Button variant="contained" color="info" className="mr-4">
+            Back
+          </Button>
+        </Link>
+        <Link href="/Forms/nss-ncc/5.1.3">
+          <Button variant="contained" color="info">
+            Save and Continue
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
