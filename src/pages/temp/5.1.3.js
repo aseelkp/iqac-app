@@ -7,8 +7,9 @@ import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../../components/FormWrapper";
-import NccStepper from "../../../components/nss-ncc/NccStepper";
+import FormWrapper from "../../components/FormWrapper";
+import NccStepper from "../../components/nss-ncc/NccStepper";
+import { formatDate } from "../../components/helpers/formatDate";
 
 const validationSchema = Yup.object({
   nameOfProgram: Yup.string().required("Name is required"),
@@ -19,12 +20,6 @@ const validationSchema = Yup.object({
   nameOfAgencies: Yup.string().required("Name of agency is required"),
 });
 
-function formatDate(date) {
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
-}
 
 function nccNss() {
   const formik = useFormik({
@@ -92,7 +87,7 @@ function nccNss() {
                 id="dateOfImplementation"
                 name="dateOfImplementation"
                 label="Date of implementation"
-                value={formik.values.dateOfImplementation}
+                value={formik.values.dateOfImplementation ? formik.values.dateOfImplementation : null}
                 onChange={(newValue) => {
                   formik.setFieldValue("dateOfImplementation", newValue);
                 }}

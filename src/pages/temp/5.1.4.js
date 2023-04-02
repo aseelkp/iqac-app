@@ -7,8 +7,8 @@ import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../../components/FormWrapper";
-import NccStepper from "../../../components/nss-ncc/NccStepper";
+import FormWrapper from "../../components/FormWrapper";
+import NccStepper from "../../components/nss-ncc/NccStepper";
 
 const validationSchema = Yup.object({
   yearOfActivity: Yup.string().required("Year is required"),
