@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import { Grid, TextField, Button, IconButton } from "@mui/material";
@@ -9,8 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import FormWrapper from "../../components/FormWrapper";
-import NccStepper from "../../components/nss-ncc/NccStepper";
+import FormWrapper from "../FormWrapper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -19,7 +18,7 @@ const validationSchema = Yup.object({
   yearOfAward: Yup.number("Year should be a number.").required("Required"),
 });
 
-function nccNss() {
+function nccNss({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfActivity: "",
@@ -42,11 +41,17 @@ function nccNss() {
     setTableData(data);
   };
 
-  return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
-      <NccStepper step={0} />
+  useEffect(() => {
+    formData.awards && setTableData(formData.awards);
+  }, []);
 
+  useEffect(() => {
+    setFormData({ ...formData, awards:tableData });
+  }, [tableData]);
+  
+
+  return (
+    <div>
       <p className="mb-3">
       <span className="font-bold">3.4.2</span> Number of awards and recognitions received for extension
         activities from government/ government recognized bodies during the
@@ -149,7 +154,7 @@ function nccNss() {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-        <table className="w-full">
+        <table className="w-full text-left">
           <thead className="border-b-2 border-blue-700">
             <tr>
               <th className="p-2">Name of the activity</th>
@@ -164,11 +169,11 @@ function nccNss() {
             {tableData.map((data, index) => {
               return (
                 <tr key={index}>
-                  <td className="p-2">{data.nameOfActivity}</td>
-                  <td className="p-2">{data.nameOfAward}</td>
-                  <td className="p-2">{data.nameOfAwardingBody}</td>
-                  <td className="p-2">{data.yearOfAward}</td>
-                  <td className="p-2">
+                  <td className="px-2">{data.nameOfActivity}</td>
+                  <td className="px-2">{data.nameOfAward}</td>
+                  <td className="px-2">{data.nameOfAwardingBody}</td>
+                  <td className="px-2">{data.yearOfAward}</td>
+                  <td className="px-2 text-right">
                     <IconButton aria-label="delete" color="error" onClick={() => handleDelete(index
                     )}>
                       <Delete />
@@ -180,13 +185,6 @@ function nccNss() {
           </tbody>
         </table>
       </div>)}
-      <div className="flex justify-end mt-4">
-      <Link href="/Forms/nss-ncc/3.4.3">
-      <Button variant="contained" color="info">
-        Save and Continue
-      </Button>
-      </Link>
-      </div>
     </div>
   );
 }

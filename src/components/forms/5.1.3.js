@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -7,9 +7,8 @@ import AddIcon from "@mui/icons-material/Add";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../components/FormWrapper";
-import NccStepper from "../../components/nss-ncc/NccStepper";
-import { formatDate } from "../../components/helpers/formatDate";
+import FormWrapper from "../FormWrapper";
+import { formatDate } from "../helpers/formatDate";
 
 const validationSchema = Yup.object({
   nameOfProgram: Yup.string().required("Name is required"),
@@ -21,7 +20,7 @@ const validationSchema = Yup.object({
 });
 
 
-function nccNss() {
+function nccNss({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfProgram: "",
@@ -45,10 +44,16 @@ function nccNss() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.capacityBuilding && setTableData(formData.capacityBuilding);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, capacityBuilding:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8 min-h-screen">
-      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
-      <NccStepper step={2} />
+    <div>
       <p>
         <span className="font-bold">5.1.3</span> Capacity building and skills
         enhancement initiatives taken by the institution include the following:
@@ -154,7 +159,7 @@ function nccNss() {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-          <table className="w-full">
+          <table className="w-full text-left">
             <thead className="border-b-2 border-blue-700">
               <tr>
                 <th className="p-2">Name of the Program</th>
@@ -167,11 +172,11 @@ function nccNss() {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.nameOfProgram}</td>
-                    <td className="p-2">{data.dateOfImplementation}</td>
-                    <td className="p-2">{data.noOfStudents}</td>
-                    <td className="p-2">{data.nameOfAgencies}</td>
-                    <td className="p-2">
+                    <td className="px-2">{data.nameOfProgram}</td>
+                    <td className="px-2">{data.dateOfImplementation}</td>
+                    <td className="px-2">{data.noOfStudents}</td>
+                    <td className="px-2">{data.nameOfAgencies}</td>
+                    <td className="px-2 text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"
@@ -187,18 +192,6 @@ function nccNss() {
           </table>
         </div>
       )}
-      <div className="flex justify-end mt-4">
-        <Link href="/Forms/nss-ncc/3.4.3">
-          <Button variant="contained" color="info" className="mr-4">
-            Back
-          </Button>
-        </Link>
-        <Link href="/Forms/nss-ncc/5.1.4">
-          <Button variant="contained" color="info">
-            Save and Continue
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 }

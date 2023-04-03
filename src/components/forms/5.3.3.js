@@ -86,7 +86,7 @@ function Form() {
                 variant="outlined"
                 id="nameOfActivity"
                 name="nameOfActivity"
-                label="Title of the program"
+                label="Title of the event"
                 value={formik.values.nameOfActivity}
                 onChange={formik.handleChange}
                 error={

@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.MuiPaper-rounded{
-    border-radius: 10px;
-    background-color: rgb(239, 244, 245);
+.MuiPaper-rounded {
+  background: rgb(255, 255, 255);
+  /* box-shadow: 0 8px 32px 0 rgba(14, 18, 71, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+  border-radius: 10px;
 }
 
 body {
-    background-color: #f4f5ed;
+  background-color: #F4F9FF;
 }
