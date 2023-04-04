@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 .MuiPaper-rounded {
-  background: rgb(255, 255, 255);
   /* box-shadow: 0 8px 32px 0 rgba(14, 18, 71, 0.37);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); */
@@ -11,5 +14,7 @@
 }
 
 body {
-  background-color: #F4F9FF;
+  background: rgba(30,30,30);
+  color: white;
 }
+
