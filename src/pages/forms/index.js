@@ -1,4 +1,4 @@
-import Form_1 from '@/components/forms/1.1.3'
+import Form_1 from '@/components/forms/1.2.2'
 import React from 'react'
 
 function index() {

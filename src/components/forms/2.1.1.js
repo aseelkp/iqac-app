@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -37,6 +37,14 @@ function Form() {
     data.splice(index, 1);
     setTableData(data);
   };
+
+  useEffect(() => {
+    formData.form_2_1_1 && setTableData(formData.form_2_1_1);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_2_1_1:tableData });
+  }, [tableData]);
 
   return (
     <div className="p-8">

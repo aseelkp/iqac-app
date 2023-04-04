@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
   yearOfAward: Yup.number("Year should be a number.").required("Required"),
 });
 
-function nccNss({ formData, setFormData }) {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfActivity: "",
@@ -42,11 +42,11 @@ function nccNss({ formData, setFormData }) {
   };
 
   useEffect(() => {
-    formData.awards && setTableData(formData.awards);
+    formData.form_3_4_2 && setTableData(formData.form_3_4_2);
   }, []);
 
   useEffect(() => {
-    setFormData({ ...formData, awards:tableData });
+    setFormData({ ...formData, form_3_4_2:tableData });
   }, [tableData]);
   
 
@@ -189,4 +189,4 @@ function nccNss({ formData, setFormData }) {
   );
 }
 
-export default nccNss;
+export default Form;

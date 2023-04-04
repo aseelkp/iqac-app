@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
 });
 
 
-function nccNss({ formData, setFormData }) {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfProgram: "",
@@ -45,11 +45,11 @@ function nccNss({ formData, setFormData }) {
   };
 
   useEffect(() => {
-    formData.capacityBuilding && setTableData(formData.capacityBuilding);
+    formData.form_5_1_3 && setTableData(formData.form_5_1_3);
   }, []);
 
   useEffect(() => {
-    setFormData({ ...formData, capacityBuilding:tableData });
+    setFormData({ ...formData, form_5_1_3:tableData });
   }, [tableData]);
 
   return (
@@ -196,4 +196,4 @@ function nccNss({ formData, setFormData }) {
   );
 }
 
-export default nccNss;
+export default Form;

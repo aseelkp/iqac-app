@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
   relevantLink: Yup.string().required("Relevant link is required"),
 });
 
-function nccNss({ formData, setFormData }) {
+function Form({ formData, setFormData }) {
   const [tableData, setTableData] = useState([]);
   const formik = useFormik({
     initialValues: {
@@ -47,11 +47,11 @@ function nccNss({ formData, setFormData }) {
   };
 
   useEffect(() => {
-    formData.guidanceAndCouncelling && setTableData(formData.guidanceAndCouncelling);
+    formData.form_5_1_4 && setTableData(formData.form_5_1_4);
   }, []);
 
   useEffect(() => {
-    setFormData({ ...formData, guidanceAndCouncelling:tableData });
+    setFormData({ ...formData, form_5_1_4:tableData });
   }, [tableData]);
 
   return (
@@ -249,4 +249,4 @@ function nccNss({ formData, setFormData }) {
   );
 }
 
-export default nccNss;
+export default Form;

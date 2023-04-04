@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, TextField, Button, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
   dateTo: Yup.string().required("Date to is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfTeacher: "",
@@ -41,6 +41,14 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_6_3_4 && setTableData(formData.form_6_3_4);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_6_3_4: tableData });
+  }, [tableData]);
+
   return (
     <div className="p-8">
       <p className="mb-3">
@@ -50,8 +58,7 @@ function Form() {
         Programmes, Refresher Course, Short Term Course etc.).
       </p>
       <p className="ml-10 mb-3 text-sm">
-        <span className="font-bold">Note:</span> Classify the data and provide
-        year wise.
+        <span className="font-bold">Note:</span> Classify the data and provide year wise.
       </p>
 
       <FormWrapper>

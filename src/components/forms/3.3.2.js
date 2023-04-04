@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, TextField, Button, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   link: Yup.string().required("Link is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
         title: "",
@@ -44,6 +44,14 @@ function Form() {
     data.splice(index, 1);
     setTableData(data);
   };
+
+  useEffect(() => {
+    formData.form_3_3_2 && setTableData(formData.form_3_3_2);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_3_3_2:tableData });
+  }, [tableData]);
 
   return (
     <div className="p-8">
