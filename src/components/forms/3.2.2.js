@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, TextField, Button, IconButton, MenuItem } from "@mui/material";
+import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
@@ -55,7 +55,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">3.2.2</span> Number of workshops/seminars
         conducted on Research Methodology, Intellectual Property Rights (IPR)
@@ -212,24 +212,24 @@ function Form({ formData, setFormData }) {
           <table className="w-full">
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
-                <th className="py-2">Year</th>
-                <th className="py-2">Name of the workshop/ seminar</th>
-                <th className="py-2">Number of participants</th>
-                <th className="py-2">Date from - to</th>
-                <th className="py-2">Link to the Activity report on the website</th>
+                <th className="p-2">Year</th>
+                <th className="p-2">Name of the workshop/ seminar</th>
+                <th className="p-2">Number of participants</th>
+                <th className="p-2">Date from - to</th>
+                <th className="p-2">Link to the Activity report on the website</th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td>{data.year}</td>
-                    <td>{data.nameOfWorkshop}</td>
-                    <td>{data.noOfParticipants}</td>
-                    <td>
+                    <td className="px-2">{data.year}</td>
+                    <td className="px-2">{data.nameOfWorkshop}</td>
+                    <td className="px-2">{data.noOfParticipants}</td>
+                    <td className="px-2">
                         {data.dateFrom} - {data.dateTo}
                     </td>
-                    <td className="max-w-sm truncate text-blue-500">
+                    <td className="px-2 max-w-sm truncate text-link">
                       <Link href={data.link} target="_blank">
                         {data.link}
                       </Link>

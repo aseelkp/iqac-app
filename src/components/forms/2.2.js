@@ -47,7 +47,7 @@ function Form() {
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item md={6}>
+            <Grid item xs={12} md={6}>
               <DatePicker
                 views={["year"]}
                 openTo="year"
@@ -72,7 +72,7 @@ function Form() {
                 }}
               />
             </Grid>
-            <Grid item md={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 type="number"
                 fullWidth
@@ -88,7 +88,7 @@ function Form() {
                 helperText={formik.touched.noOfSeats && formik.errors.noOfSeats}
               />
             </Grid>
-            <Grid item md={12}>
+            <Grid item xs={12} md={12}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -101,7 +101,7 @@ function Form() {
                 helperText={formik.touched.link && formik.errors.link}
               />
             </Grid>
-            <Grid item md={12} container justifyContent="flex-end">
+            <Grid item xs={12} md={12} container justifyContent="flex-end">
               <Button
                 variant="contained"
                 endIcon={<AddIcon />}
@@ -124,17 +124,21 @@ function Form() {
                 <th className="p-2">
                   Number of seats earmarked for reserved category
                 </th>
-                <th className="p-2 truncate max-w-sm">Link to the supporting document</th>
+                <th className="p-2 truncate max-w-sm">
+                  Link to the supporting document
+                </th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.year}</td>
-                    <td className="p-2">{data.noOfSeats}</td>
-                    <td className="p-2"><Link href={data.link}>{data.link}</Link></td>
-                    <td className="p-2">
+                    <td className="px-2">{data.year}</td>
+                    <td className="px-2">{data.noOfSeats}</td>
+                    <td className="px-2 truncate max-w-sm text-link">
+                      <Link href={data.link} target="_blank">{data.link}</Link>
+                    </td>
+                    <td className="px-2 text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"

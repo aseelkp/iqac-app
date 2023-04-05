@@ -315,16 +315,16 @@ function Form({ formData, setFormData }) {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.nameOfTeacher}</td>
-                    <td className="p-2">{data.titleOfBook}</td>
-                    <td className="p-2">{data.titleOfPaper}</td>
-                    <td className="p-2">{data.titleOfProceedings}</td>
-                    <td className="p-2">{data.nameOfConference}</td>
-                    <td className="p-2">{data.scopeOfConference}</td>
-                    <td className="p-2">{data.yearOfPublication}</td>
-                    <td className="p-2">{data.ISBNorISSN}</td>
-                    <td className="p-2">{data.affiliatingInstitute}</td>
-                    <td className="p-2">{data.nameOfPublisher}</td>
+                    <td className="px-2">{data.nameOfTeacher}</td>
+                    <td className="px-2">{data.titleOfBook}</td>
+                    <td className="px-2">{data.titleOfPaper}</td>
+                    <td className="px-2">{data.titleOfProceedings}</td>
+                    <td className="px-2">{data.nameOfConference}</td>
+                    <td className="px-2">{data.scopeOfConference}</td>
+                    <td className="px-2">{data.yearOfPublication}</td>
+                    <td className="px-2">{data.ISBNorISSN}</td>
+                    <td className="px-2">{data.affiliatingInstitute}</td>
+                    <td className="px-2">{data.nameOfPublisher}</td>
                     <td className="px-2 text-right">
                       <IconButton
                         aria-label="delete"

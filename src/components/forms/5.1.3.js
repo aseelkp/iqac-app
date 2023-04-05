@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -176,7 +175,7 @@ function Form({ formData, setFormData }) {
                     <td className="px-2">{data.dateOfImplementation}</td>
                     <td className="px-2">{data.noOfStudents}</td>
                     <td className="px-2">{data.nameOfAgencies}</td>
-                    <td className="px-2 text-right">
+                    <td className="text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"

@@ -10,6 +10,7 @@ module.exports = {
       current: "currentColor",
       black: "#000",
       white: "#fff",
+      gray: "#9fa6b2",
       titleBg: "#03132a ",
       gradientFrom: "#060397",
       gradientTo: "#312DF8",

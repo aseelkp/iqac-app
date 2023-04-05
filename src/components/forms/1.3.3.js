@@ -12,9 +12,6 @@ import FormWrapper from "../../components/FormWrapper";
 const validationSchema = Yup.object({
   programName: Yup.string().required("Program name is required"),
   programCode: Yup.string().required("Program code is required"),
-  nameOfCourse: Yup.string().required("Name of course is required"),
-  courseCode: Yup.string().required("Course code is required"),
-  yearOfOffering: Yup.number().required("Year of offering is required"),
   nameOfStudent: Yup.string().required("Name of student is required"),
   link: Yup.string().required("Link to the relevant document is required"),
 });
@@ -24,9 +21,6 @@ function Form({ formData, setFormData }) {
     initialValues: {
       programName: "",
       programCode: "",
-      nameOfCourse: "",
-      courseCode: "",
-      yearOfOffering: "",
       nameOfStudent: "",
       link: "",
     },
@@ -46,18 +40,19 @@ function Form({ formData, setFormData }) {
   };
 
 //   useEffect(() => {
-//     formData.form_1_3_2 && setTableData(formData.form_1_3_2);
+//     formData.form_1_3_3 && setTableData(formData.form_1_3_3);
 //   }, []);
 
 //   useEffect(() => {
-//     setFormData({ ...formData, form_1_3_2: tableData });
+//     setFormData({ ...formData, form_1_3_3: tableData });
 //   }, [tableData]);
 
   return (
     <div>
-      <p className="mb-3">
+      <p className="mb-1">
         <span className="font-bold">1.3.2</span> Number of courses that include experiential learning through project work/field work/internship during the year.
       </p>
+      <p className="mb-3 ml-10 text-xs text-gray">* To check with SOP if the same student can be counted more than once</p>
 
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
@@ -92,55 +87,6 @@ function Form({ formData, setFormData }) {
                 <TextField
                     fullWidth
                     variant="outlined"
-                    id="nameOfCourse"
-                    name="nameOfCourse"
-                    label="Name of Course"
-                    value={formik.values.nameOfCourse}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfCourse && Boolean(formik.errors.nameOfCourse)}
-                    helperText={formik.touched.nameOfCourse && formik.errors.nameOfCourse}
-                />
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="courseCode"
-                    name="courseCode"
-                    label="Course Code"
-                    value={formik.values.courseCode}
-                    onChange={formik.handleChange}
-                    error={formik.touched.courseCode && Boolean(formik.errors.courseCode)}
-                    helperText={formik.touched.courseCode && formik.errors.courseCode}
-                />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <DatePicker
-                views={["year"]}
-                openTo="year"
-                id="yearOfOffering"
-                name="yearOfOffering"
-                label="Year of Offering"
-                value={formik.values.yearOfOffering ? new Date(formik.values.yearOfOffering, 0, 1) : null}
-                onChange={(newValue) => {
-                  const selectedYear = newValue.getFullYear();
-                  formik.setFieldValue("yearOfOffering", selectedYear);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-                slotProps={{
-                  textField: {
-                    fullWidth: true,
-                    variant: "outlined",
-                    error: formik.touched.yearOfOffering && Boolean(formik.errors.yearOfOffering),
-                    helperText: formik.touched.yearOfOffering && formik.errors.yearOfOffering,
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
                     id="nameOfStudent"
                     name="nameOfStudent"
                     label="Name of Student"
@@ -150,7 +96,7 @@ function Form({ formData, setFormData }) {
                     helperText={formik.touched.nameOfStudent && formik.errors.nameOfStudent}
                 />
             </Grid>
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -185,10 +131,6 @@ function Form({ formData, setFormData }) {
               <tr>
                 <th className="p-2">Program Name</th>
                 <th className="p-2">Program Code</th>
-                <th className="p-2">Name of Course</th>
-                <th className="p-2">Course Code</th>
-                <th className="p-2">Year of Offering</th>
-                <th className="p-2">Name of Student studied the course</th>
                 <th className="p-2">Link to relevant document</th>
               </tr>
             </thead>
@@ -198,9 +140,6 @@ function Form({ formData, setFormData }) {
                   <tr key={index}>
                     <td className="px-2">{data.programName}</td>
                     <td className="px-2">{data.programCode}</td>
-                    <td className="px-2">{data.nameOfCourse}</td>
-                    <td className="px-2">{data.courseCode}</td>
-                    <td className="px-2">{data.yearOfOffering}</td>
                     <td className="px-2">{data.nameOfStudent}</td>
                     <td className="px-2 truncate max-w-xs text-link">
                       <Link href={data.link} target="_blank">{data.link}</Link>

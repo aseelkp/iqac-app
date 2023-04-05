@@ -54,7 +54,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">3.3.2</span> Number of research papers per teachers in the Journals notified on UGC website during the year.
       </p>
@@ -205,7 +205,7 @@ function Form({ formData, setFormData }) {
                     <td className="px-2">{data.nameOfJournal}</td>
                     <td className="px-2">{data.yearOfPublication}</td>
                     <td className="px-2">{data.ISSNno}</td>
-                    <td className="px-2 max-w-sm truncate text-blue-500">
+                    <td className="px-2 max-w-sm truncate text-link">
                       <Link href={data.link} target="_blank">
                         {data.link}
                       </Link>

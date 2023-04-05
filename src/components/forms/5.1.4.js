@@ -229,7 +229,7 @@ function Form({ formData, setFormData }) {
                     <td className="px-2">{data.noOfStudentsParticipated}</td>
                     <td className="px-2">{data.noOfStudentsPlaced}</td>
                     <td className="px-2 truncate max-w-xs text-link"><Link href={data.relevantLink} target="_blank">{data.relevantLink}</Link></td>
-                    <td className="px-2 text-right">
+                    <td className="text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"
