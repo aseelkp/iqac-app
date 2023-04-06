@@ -49,7 +49,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">6.3.2</span> Number of teachers provided with financial support to attend conferences/ workshops and towards membership fee of professional bodies during the year.
       </p>
@@ -157,22 +157,22 @@ function Form({ formData, setFormData }) {
           <table className="w-full table-fixed">
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
-                <th className="py-2">Year</th>
-                <th className="py-2">Name of the Teacher</th>
-                <th className="py-2">Name of conference/ workshop attended for which financial support provided</th>
-                <th className="py-2">Name of the professional body for which membership fee is provided</th>
-                <th className="py-2">Amount of support</th>
+                <th className="p-2">Year</th>
+                <th className="p-2">Name of the Teacher</th>
+                <th className="p-2">Name of conference/ workshop attended for which financial support provided</th>
+                <th className="p-2">Name of the professional body for which membership fee is provided</th>
+                <th className="p-2">Amount of support</th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td>{data.year}</td>
-                    <td>{data.nameOfTeacher}</td>
-                    <td>{data.nameOfConference}</td>
-                    <td>{data.nameOfProBody}</td>
-                    <td>{data.amount}</td>
+                    <td className="px-2">{data.year}</td>
+                    <td className="px-2">{data.nameOfTeacher}</td>
+                    <td className="px-2">{data.nameOfConference}</td>
+                    <td className="px-2">{data.nameOfProBody}</td>
+                    <td className="px-2">{data.amount}</td>
                     <td className="text-right">
                       <IconButton
                         aria-label="delete"

@@ -45,7 +45,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-1">
         <span className="font-bold">1.1.3</span> Teachers of the Institution
         participate in following activities related to curriculum development
@@ -139,12 +139,12 @@ function Form({ formData, setFormData }) {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-          <table className="w-full">
+          <table className="w-full text-left">
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
-                <th className="py-2">Year</th>
-                <th className="py-2">Name of teacher participated</th>
-                <th className="py-2">
+                <th className="p-2">Year</th>
+                <th className="p-2">Name of teacher participated</th>
+                <th className="p-2">
                   Name of the body in which full time teacher participated
                 </th>
               </tr>
@@ -153,9 +153,9 @@ function Form({ formData, setFormData }) {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td>{data.year}</td>
-                    <td>{data.nameOfTeacher}</td>
-                    <td>{data.nameOfBody}</td>
+                    <td className="px-2">{data.year}</td>
+                    <td className="px-2">{data.nameOfTeacher}</td>
+                    <td className="px-2">{data.nameOfBody}</td>
                     <td className="text-right">
                       <IconButton
                         aria-label="delete"
