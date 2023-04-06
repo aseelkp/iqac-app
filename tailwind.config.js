@@ -14,7 +14,8 @@ module.exports = {
       titleBg: "#03132a ",
       gradientFrom: "#060397",
       gradientTo: "#312DF8",
-      link: "#0d6efd"
+      link: "#0d6efd",
+      background: "#1a202c"
     },
 
     extend: {},

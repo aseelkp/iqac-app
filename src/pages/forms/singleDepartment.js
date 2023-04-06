@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, Stepper, Step, StepLabel } from "@mui/material";
+import { Stepper, Step, StepLabel } from "@mui/material";
+import { CustomButton } from "@/components/styles";
 
 // Forms
 import Form_1 from "@/components/forms/1.1.3";
@@ -73,7 +74,7 @@ function SignleDepartment() {
           {step === 9 && <Form_10 {...props} />}
         </div>
         <div className="flex justify-end mt-5">
-          <Button
+          <CustomButton
             variant="contained"
             color="info"
             className="mr-4"
@@ -81,14 +82,14 @@ function SignleDepartment() {
             disabled={step === 0}
           >
             Back
-          </Button>
-          <Button
+          </CustomButton>
+          <CustomButton
             variant="contained"
             color="info"
             onClick={() => setStep(step + 1)}
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
-          </Button>
+          </CustomButton>
         </div>
       </div>
     </div>

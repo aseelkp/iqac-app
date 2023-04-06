@@ -1,4 +1,4 @@
-import { styled, Box, Toolbar, AppBar, Typography } from "@mui/material";
+import { styled, Box, Toolbar, AppBar, Typography, Button } from "@mui/material";
 import Link from "next/link";
 
 export const ContentWrapper = styled(Box)(() => ({
@@ -78,3 +78,13 @@ export const NavButton = styled(Box)({
     backgroundColor: "rgba(56, 142, 60, .8)",
   },
 });
+
+export const CustomButton = styled(Button)(({theme}) => ({
+  backgroundColor: "#1976DB !important",
+  "&:hover": {
+    backgroundColor: "#1769aa !important",
+  },
+  "&:disabled": {
+    backgroundColor: theme.palette.grey[500] + " !important",
+  },
+}));

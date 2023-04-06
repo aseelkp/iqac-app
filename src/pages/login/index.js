@@ -1,6 +1,7 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import { CustomButton } from "@/components/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -31,12 +32,6 @@ function Copyright(props) {
   );
 }
 
-const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
-
 export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,7 +43,6 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
       <div className="flex h-screen justify-center items-center">
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -89,14 +83,14 @@ export default function SignIn() {
                 id="password"
                 autoComplete="current-password"
               />
-              <Button
+              <CustomButton
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 , backgroundColor: "#90CAF9 !important"}}
               >
                 Sign In
-              </Button>
+              </CustomButton>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
@@ -114,6 +108,5 @@ export default function SignIn() {
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </div>
-    </ThemeProvider>
   );
 }

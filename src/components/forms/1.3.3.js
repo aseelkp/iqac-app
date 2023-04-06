@@ -4,6 +4,7 @@ import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import { CustomButton } from "@/components/styles";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -111,14 +112,14 @@ function Form({ formData, setFormData }) {
             </Grid>
 
             <Grid item xs={12} container justifyContent="flex-end">
-              <Button
+              <CustomButton
                 variant="contained"
                 endIcon={<AddIcon />}
                 color="info"
                 type="submit"
               >
                 Add
-              </Button>
+              </CustomButton>
             </Grid>
           </Grid>
         </form>
