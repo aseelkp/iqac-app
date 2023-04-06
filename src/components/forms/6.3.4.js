@@ -51,7 +51,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">6.3.4</span> Number of teachers undergoing
         online/face-to-face Faculty development Programmes (FDP) during the year

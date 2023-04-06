@@ -53,7 +53,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">6.3.3</span> Number of professional
         development /administrative training programs organized by the
