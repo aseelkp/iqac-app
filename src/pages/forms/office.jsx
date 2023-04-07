@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { CustomButton } from "@/components/styles";
+import { createOffice } from "@/services/dataService";
 
 // Forms
 import Form1 from "@/components/forms/2.2";
@@ -44,6 +45,13 @@ function ClubsandAsso() {
     setFormData,
   };
 
+  const handleNext = () => {
+    if (step !== steps.length - 1) setStep(step + 1);
+    else{ 
+      createOffice(formData)
+    }
+  };
+
   return (
     <div className="">
       <div className="p-8 py-5 flex justify-between items-center bg-titleBg text-white">
@@ -82,7 +90,7 @@ function ClubsandAsso() {
           <CustomButton
             variant="contained"
             color="info"
-            onClick={() => setStep(step + 1)}
+            onClick={handleNext}
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>

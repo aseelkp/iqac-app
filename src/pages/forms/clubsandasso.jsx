@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Stepper, Step, StepLabel } from "@mui/material";
+import { Stepper, Step, StepLabel, TextField } from "@mui/material";
 import { CustomButton } from "@/components/styles";
+import { createClub } from "@/services/dataService";
 
 // Forms
 import Workshops from "@/components/forms/3.2.2";
@@ -19,6 +20,7 @@ const steps = [
 
 function ClubsandAsso() {
   const [step, setStep] = useState(0);
+  const [clubName, setClubName] = useState("Connect");
   const [formData, setFormData] = useState({
     form_3_2_2: [],
     form_3_4_2: [],
@@ -30,6 +32,13 @@ function ClubsandAsso() {
   const props = {
     formData,
     setFormData,
+  };
+
+  const handleNext = () => {
+    if (step !== steps.length - 1) setStep(step + 1);
+    else{ 
+      createClub({ clubName, data:formData });
+    }
   };
 
   return (
@@ -47,6 +56,17 @@ function ClubsandAsso() {
         </Stepper>
         {/* Forms */}
         <div>
+          {step === 0 && (
+            <div className="w-1/2 my-5">
+              <TextField
+                fullWidth
+                label="Club Name"
+                variant="outlined"
+                value={clubName}
+                onChange={(e) => setClubName(e.target.value)}
+              />
+            </div>
+          )}
           {step === 0 && <Workshops {...props} />}
           {step === 1 && <AwardsAndRecognitions {...props} />}
           {step === 2 && <ExtensionPrograms {...props} />}
@@ -66,7 +86,7 @@ function ClubsandAsso() {
           <CustomButton
             variant="contained"
             color="info"
-            onClick={() => setStep(step + 1)}
+            onClick={handleNext}
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>

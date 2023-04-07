@@ -6,6 +6,8 @@ import { CustomButton } from "@/components/styles";
 import AwardsAndRecognitions from "@/components/forms/5.3.1";
 import Events from "@/components/forms/5.3.3";
 
+import { createPhysicalEducation } from "@/services/dataService";
+
 const steps = [
   "Awards and Recognitions",
   "Events or Competitions Participated",
@@ -21,6 +23,14 @@ function PhysicalEdu() {
   const props = {
     formData,
     setFormData,
+  };
+
+  const handleNext = () => {
+    if (step !== steps.length - 1) setStep(step + 1);
+    else{ 
+      createPhysicalEducation(formData)
+      alert("Form Submitted Successfully")
+    }
   };
 
   return (
@@ -54,7 +64,7 @@ function PhysicalEdu() {
           <CustomButton
             variant="contained"
             color="info"
-            onClick={() => setStep(step + 1)}
+            onClick={handleNext}
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>

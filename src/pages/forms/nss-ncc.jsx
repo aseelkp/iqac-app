@@ -36,7 +36,7 @@ function NssNcc() {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
       createNssNcc({ clubName, data:formData });
-      console.log("submitted", formData);
+      alert("Data submitted successfully");
     }
   };
 

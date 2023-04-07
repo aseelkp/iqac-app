@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Stepper, Step, StepLabel } from "@mui/material";
+import { Stepper, Step, StepLabel, TextField } from "@mui/material";
 import { CustomButton } from "@/components/styles";
+import { createMainDepartment } from "@/services/dataService";
 
 // Forms
 import Form1 from "@/components/forms/1.1.3";
@@ -45,20 +46,27 @@ const steps = [
   "5.2.2",
   "6.3.2",
   "6.3.3",
-  "6.3.4"
+  "6.3.4",
 ];
 
 function SignleDepartment() {
   const [step, setStep] = useState(0);
+  const [department, setDepartment] = useState("computer science");
   const [formData, setFormData] = useState({
     form_1_1_3: [],
     form_1_2_2: [],
-
   });
 
   const props = {
     formData,
     setFormData,
+  };
+
+  const handleNext = () => {
+    if (step !== steps.length - 1) setStep(step + 1);
+    else{ 
+      createMainDepartment({department, data: formData})
+    }
   };
 
   return (
@@ -76,6 +84,17 @@ function SignleDepartment() {
         </Stepper>
         {/* Forms */}
         <div>
+          {step === 0 && (
+            <div className="w-1/2 my-5">
+              <TextField
+                fullWidth
+                label="Department"
+                variant="outlined"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+              />
+            </div>
+          )}
           {step === 0 && <Form1 {...props} />}
           {step === 1 && <Form2 {...props} />}
           {step === 2 && <Form3 {...props} />}
@@ -110,7 +129,7 @@ function SignleDepartment() {
           <CustomButton
             variant="contained"
             color="info"
-            onClick={() => setStep(step + 1)}
+            onClick={handleNext}
           >
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>
