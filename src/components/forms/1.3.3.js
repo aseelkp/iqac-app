@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Grid, TextField, Button, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -40,13 +40,13 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-//   useEffect(() => {
-//     formData.form_1_3_3 && setTableData(formData.form_1_3_3);
-//   }, []);
+  useEffect(() => {
+    formData.form_1_3_3 && setTableData(formData.form_1_3_3);
+  }, []);
 
-//   useEffect(() => {
-//     setFormData({ ...formData, form_1_3_3: tableData });
-//   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_1_3_3: tableData });
+  }, [tableData]);
 
   return (
     <div>

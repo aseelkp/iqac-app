@@ -80,7 +80,7 @@ export const NavButton = styled(Box)({
 });
 
 export const CustomButton = styled(Button)(({theme}) => ({
-  backgroundColor: "#1976DB !important",
+  backgroundColor: "#2196f3 !important",
   "&:hover": {
     backgroundColor: "#1769aa !important",
   },
@@ -88,3 +88,4 @@ export const CustomButton = styled(Button)(({theme}) => ({
     backgroundColor: theme.palette.grey[500] + " !important",
   },
 }));
+//  Light mode #1976DB

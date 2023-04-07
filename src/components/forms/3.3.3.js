@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 
 import { Grid, TextField, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -60,13 +59,13 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  // useEffect(() => {
-  //   formData.form_3_3_3 && setTableData(formData.form_3_3_3);
-  // }, []);
+  useEffect(() => {
+    formData.form_3_3_3 && setTableData(formData.form_3_3_3);
+  }, []);
 
-  // useEffect(() => {
-  //   setFormData({ ...formData, form_3_3_3: tableData });
-  // }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_3_3_3: tableData });
+  }, [tableData]);
 
   return (
     <div>
@@ -303,12 +302,16 @@ function Form({ formData, setFormData }) {
                 <th className="p-2">Name of the teacher</th>
                 <th className="p-2">Title of the book/chapters published</th>
                 <th className="p-2">Title of the paper</th>
-                <th className="p-2">Title of the proceedings of the conference</th>
+                <th className="p-2">
+                  Title of the proceedings of the conference
+                </th>
                 <th className="p-2">Name of the conference</th>
                 <th className="p-2">Scope of the conference</th>
                 <th className="p-2">Year of publication</th>
                 <th className="p-2">ISBN/ISSN number of the proceeding</th>
-                <th className="p-2">Affiliating Institute at the time of publication</th>
+                <th className="p-2">
+                  Affiliating Institute at the time of publication
+                </th>
                 <th className="p-2">Name of the publisher</th>
               </tr>
             </thead>

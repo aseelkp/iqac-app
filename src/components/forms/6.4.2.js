@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, TextField, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
   link: Yup.string().required("Link is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
         year: "",
@@ -42,8 +42,16 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_6_4_2 && setTableData(formData.form_6_4_2);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_6_4_2:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">6.4.2</span> Funds / Grants received from non-government bodies, individuals, philanthropers during the year (not covered in Criterion III).
       </p>

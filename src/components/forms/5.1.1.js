@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Grid, TextField, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   link: Yup.string().required("Link is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       year: "",
@@ -44,8 +44,16 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_5_1_1 && setTableData(formData.form_5_1_1);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_5_1_1:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-1">
         <span className="font-bold">5.1.1</span> Number of students benefited by scholarships and free ships provided by the Government during the year.
       </p>

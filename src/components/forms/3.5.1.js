@@ -11,25 +11,27 @@ import * as Yup from "yup";
 import FormWrapper from "../../components/FormWrapper";
 
 const validationSchema = Yup.object({
-    titleOfActivity: Yup.string().required("Title of activity is required"),
-    nameOfAgency: Yup.string().required("Name of agency is required"),
-    nameOfParticipant: Yup.string().required("Name of participant is required"),
-    yearOfCollaboration: Yup.number().required("Year of collaboration is required"),
-    duration: Yup.string().required("Duration of collaboration is required"),
-    natureOfActivity: Yup.string().required("Nature of activity is required"),
-    link: Yup.string().required("Link is required"),
+  titleOfActivity: Yup.string().required("Title of activity is required"),
+  nameOfAgency: Yup.string().required("Name of agency is required"),
+  nameOfParticipant: Yup.string().required("Name of participant is required"),
+  yearOfCollaboration: Yup.number().required(
+    "Year of collaboration is required"
+  ),
+  duration: Yup.string().required("Duration of collaboration is required"),
+  natureOfActivity: Yup.string().required("Nature of activity is required"),
+  link: Yup.string().required("Link is required"),
 });
 
 function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
-        titleOfActivity: "",
-        nameOfAgency: "",
-        nameOfParticipant: "",
-        yearOfCollaboration: "",
-        duration: "",
-        natureOfActivity: "",
-        link: "",
+      titleOfActivity: "",
+      nameOfAgency: "",
+      nameOfParticipant: "",
+      yearOfCollaboration: "",
+      duration: "",
+      natureOfActivity: "",
+      link: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -46,61 +48,80 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_3_5_1 && setTableData(formData.form_3_5_1);
-  //   }, []);
+  useEffect(() => {
+    formData.form_3_5_1 && setTableData(formData.form_3_5_1);
+  }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_3_5_1: tableData });
-  //   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_3_5_1: tableData });
+  }, [tableData]);
 
   return (
     <div>
       <p className="mb-3">
-        <span className="font-bold">3.5.1</span> Number of Collaborative activities for  research, Faculty exchange, Student exchange/ internship during the year.
+        <span className="font-bold">3.5.1</span> Number of Collaborative
+        activities for research, Faculty exchange, Student exchange/ internship
+        during the year.
       </p>
 
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="titleOfActivity"
-                    name="titleOfActivity"
-                    label="Title of the collaborative activity"
-                    value={formik.values.titleOfActivity}
-                    onChange={formik.handleChange}
-                    error={formik.touched.titleOfActivity && Boolean(formik.errors.titleOfActivity)}
-                    helperText={formik.touched.titleOfActivity && formik.errors.titleOfActivity}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="titleOfActivity"
+                name="titleOfActivity"
+                label="Title of the collaborative activity"
+                value={formik.values.titleOfActivity}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.titleOfActivity &&
+                  Boolean(formik.errors.titleOfActivity)
+                }
+                helperText={
+                  formik.touched.titleOfActivity &&
+                  formik.errors.titleOfActivity
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="nameOfAgency"
-                    name="nameOfAgency"
-                    label="Name of the collaborating agency with contact details"
-                    value={formik.values.nameOfAgency}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfAgency && Boolean(formik.errors.nameOfAgency)}
-                    helperText={formik.touched.nameOfAgency && formik.errors.nameOfAgency}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="nameOfAgency"
+                name="nameOfAgency"
+                label="Name of the collaborating agency with contact details"
+                value={formik.values.nameOfAgency}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfAgency &&
+                  Boolean(formik.errors.nameOfAgency)
+                }
+                helperText={
+                  formik.touched.nameOfAgency && formik.errors.nameOfAgency
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="nameOfParticipant"
-                    name="nameOfParticipant"
-                    label="Name of the participant"
-                    value={formik.values.nameOfParticipant}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfParticipant && Boolean(formik.errors.nameOfParticipant)}
-                    helperText={formik.touched.nameOfParticipant && formik.errors.nameOfParticipant}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="nameOfParticipant"
+                name="nameOfParticipant"
+                label="Name of the participant"
+                value={formik.values.nameOfParticipant}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfParticipant &&
+                  Boolean(formik.errors.nameOfParticipant)
+                }
+                helperText={
+                  formik.touched.nameOfParticipant &&
+                  formik.errors.nameOfParticipant
+                }
+              />
             </Grid>
             <Grid item xs={6} md={3}>
               <DatePicker
@@ -134,45 +155,52 @@ function Form({ formData, setFormData }) {
               />
             </Grid>
             <Grid item xs={6} md={3}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="duration"
-                    name="duration"
-                    label="Duration"
-                    value={formik.values.duration}
-                    onChange={formik.handleChange}
-                    error={formik.touched.duration && Boolean(formik.errors.duration)}
-                    helperText={formik.touched.duration && formik.errors.duration}
-                />
-            </Grid>
-            <Grid item xs={12} md={6}>  
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="natureOfActivity"
-                    name="natureOfActivity"
-                    label="Nature of the activity"
-                    value={formik.values.natureOfActivity}
-                    onChange={formik.handleChange}
-                    error={formik.touched.natureOfActivity && Boolean(formik.errors.natureOfActivity)}
-                    helperText={formik.touched.natureOfActivity && formik.errors.natureOfActivity}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="duration"
+                name="duration"
+                label="Duration"
+                value={formik.values.duration}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.duration && Boolean(formik.errors.duration)
+                }
+                helperText={formik.touched.duration && formik.errors.duration}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="link"
-                    name="link"
-                    label="Link to the relavant document"
-                    value={formik.values.link}
-                    onChange={formik.handleChange}
-                    error={formik.touched.link && Boolean(formik.errors.link)}
-                    helperText={formik.touched.link && formik.errors.link}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="natureOfActivity"
+                name="natureOfActivity"
+                label="Nature of the activity"
+                value={formik.values.natureOfActivity}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.natureOfActivity &&
+                  Boolean(formik.errors.natureOfActivity)
+                }
+                helperText={
+                  formik.touched.natureOfActivity &&
+                  formik.errors.natureOfActivity
+                }
+              />
             </Grid>
-            
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="link"
+                name="link"
+                label="Link to the relavant document"
+                value={formik.values.link}
+                onChange={formik.handleChange}
+                error={formik.touched.link && Boolean(formik.errors.link)}
+                helperText={formik.touched.link && formik.errors.link}
+              />
+            </Grid>
 
             <Grid item xs={12} container justifyContent="flex-end">
               <CustomButton
@@ -194,7 +222,9 @@ function Form({ formData, setFormData }) {
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
                 <th className="px-2">Title of the collaborative activity</th>
-                <th className="px-2">Name of the collaborating agency with contact details</th>
+                <th className="px-2">
+                  Name of the collaborating agency with contact details
+                </th>
                 <th className="px-2">Name of the participant</th>
                 <th className="px-2">Year of collaboration</th>
                 <th className="px-2">Duration</th>

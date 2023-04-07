@@ -10,21 +10,21 @@ import * as Yup from "yup";
 import FormWrapper from "../../components/FormWrapper";
 
 const validationSchema = Yup.object({
-    year: Yup.number().required("Year is required"),
-    nameOfStudent: Yup.string().required("Name of student is required"),
-    program: Yup.string().required("Programme is required"),
-    nameOfEmployer: Yup.string().required("Name of employer is required"),
-    package: Yup.string().required("Package is required"),
+  year: Yup.number().required("Year is required"),
+  nameOfStudent: Yup.string().required("Name of student is required"),
+  program: Yup.string().required("Programme is required"),
+  nameOfEmployer: Yup.string().required("Name of employer is required"),
+  package: Yup.string().required("Package is required"),
 });
 
 function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
-        year: "",
-        nameOfStudent: "",
-        program: "",
-        nameOfEmployer: "",
-        package: "",
+      year: "",
+      nameOfStudent: "",
+      program: "",
+      nameOfEmployer: "",
+      package: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -41,18 +41,19 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_5_2_1 && setTableData(formData.form_5_2_1);
-  //   }, []);
+  useEffect(() => {
+    formData.form_5_2_1 && setTableData(formData.form_5_2_1);
+  }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_5_2_1: tableData });
-  //   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_5_2_1: tableData });
+  }, [tableData]);
 
   return (
     <div>
       <p className="mb-3">
-        <span className="font-bold">5.2.1</span> Number of placement of outgoing students during the year.
+        <span className="font-bold">5.2.1</span> Number of placement of outgoing
+        students during the year.
       </p>
 
       <FormWrapper>
@@ -66,9 +67,7 @@ function Form({ formData, setFormData }) {
                 name="year"
                 label="Year"
                 value={
-                  formik.values.year
-                    ? new Date(formik.values.year, 0, 1)
-                    : null
+                  formik.values.year ? new Date(formik.values.year, 0, 1) : null
                 }
                 onChange={(newValue) => {
                   const selectedYear = newValue.getFullYear();
@@ -79,69 +78,74 @@ function Form({ formData, setFormData }) {
                   textField: {
                     fullWidth: true,
                     variant: "outlined",
-                    error:
-                      formik.touched.year &&
-                      Boolean(formik.errors.year),
-                    helperText:
-                      formik.touched.year &&
-                      formik.errors.year,
+                    error: formik.touched.year && Boolean(formik.errors.year),
+                    helperText: formik.touched.year && formik.errors.year,
                   },
                 }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
-                <TextField
-                    fullWidth
-                    id="nameOfStudent"
-                    name="nameOfStudent"
-                    label="Name of student placed with contact details"
-                    variant="outlined"
-                    value={formik.values.nameOfStudent}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfStudent && Boolean(formik.errors.nameOfStudent)}
-                    helperText={formik.touched.nameOfStudent && formik.errors.nameOfStudent}
-                />
+              <TextField
+                fullWidth
+                id="nameOfStudent"
+                name="nameOfStudent"
+                label="Name of student placed with contact details"
+                variant="outlined"
+                value={formik.values.nameOfStudent}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfStudent &&
+                  Boolean(formik.errors.nameOfStudent)
+                }
+                helperText={
+                  formik.touched.nameOfStudent && formik.errors.nameOfStudent
+                }
+              />
             </Grid>
             <Grid item xs={12} md={4}>
-                <TextField
-                    fullWidth
-                    id="program"
-                    name="program"
-                    label="Program graduated from"
-                    variant="outlined"
-                    value={formik.values.program}
-                    onChange={formik.handleChange}
-                    error={formik.touched.program && Boolean(formik.errors.program)}
-                    helperText={formik.touched.program && formik.errors.program}
-                />
+              <TextField
+                fullWidth
+                id="program"
+                name="program"
+                label="Program graduated from"
+                variant="outlined"
+                value={formik.values.program}
+                onChange={formik.handleChange}
+                error={formik.touched.program && Boolean(formik.errors.program)}
+                helperText={formik.touched.program && formik.errors.program}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    id="nameOfEmployer"
-                    name="nameOfEmployer"
-                    label="Name of employer with contact details"
-                    variant="outlined"
-                    value={formik.values.nameOfEmployer}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfEmployer && Boolean(formik.errors.nameOfEmployer)}
-                    helperText={formik.touched.nameOfEmployer && formik.errors.nameOfEmployer}
-                />
+              <TextField
+                fullWidth
+                id="nameOfEmployer"
+                name="nameOfEmployer"
+                label="Name of employer with contact details"
+                variant="outlined"
+                value={formik.values.nameOfEmployer}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfEmployer &&
+                  Boolean(formik.errors.nameOfEmployer)
+                }
+                helperText={
+                  formik.touched.nameOfEmployer && formik.errors.nameOfEmployer
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    id="package"
-                    name="package"
-                    label="Pay package at appointment"
-                    variant="outlined"
-                    value={formik.values.package}
-                    onChange={formik.handleChange}
-                    error={formik.touched.package && Boolean(formik.errors.package)}
-                    helperText={formik.touched.package && formik.errors.package}
-                />
+              <TextField
+                fullWidth
+                id="package"
+                name="package"
+                label="Pay package at appointment"
+                variant="outlined"
+                value={formik.values.package}
+                onChange={formik.handleChange}
+                error={formik.touched.package && Boolean(formik.errors.package)}
+                helperText={formik.touched.package && formik.errors.package}
+              />
             </Grid>
-            
 
             <Grid item xs={12} container justifyContent="flex-end">
               <CustomButton

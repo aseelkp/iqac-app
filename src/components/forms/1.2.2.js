@@ -51,13 +51,13 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_1_2_2 && setTableData(formData.form_1_2_2);
-  //   }, []);
+    useEffect(() => {
+      formData.form_1_2_2 && setTableData(formData.form_1_2_2);
+    }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_1_2_2:tableData });
-  //   }, [tableData]);
+    useEffect(() => {
+      setFormData({ ...formData, form_1_2_2:tableData });
+    }, [tableData]);
 
   return (
     <div>

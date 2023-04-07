@@ -10,27 +10,31 @@ import * as Yup from "yup";
 import FormWrapper from "../../components/FormWrapper";
 
 const validationSchema = Yup.object({
-    nameOfProject: Yup.string().required("Name of project is required"),
-    nameOfInvestigator: Yup.string().required("Name of investigator is required"),
-    deptOfInvestigator: Yup.string().required("Department of investigator is required"),
-    yearOfAward: Yup.number().required("Year of award is required"),
-    amountSanctioned: Yup.number().required("Amount sanctioned is required"),
-    durationOfProject: Yup.string().required("Duration of project is required"),
-    nameOfFundingAgency: Yup.string().required("Name of funding agency is required"),
-    typeOfAgency: Yup.string().required("Type of agency is required"),
+  nameOfProject: Yup.string().required("Name of project is required"),
+  nameOfInvestigator: Yup.string().required("Name of investigator is required"),
+  deptOfInvestigator: Yup.string().required(
+    "Department of investigator is required"
+  ),
+  yearOfAward: Yup.number().required("Year of award is required"),
+  amountSanctioned: Yup.number().required("Amount sanctioned is required"),
+  durationOfProject: Yup.string().required("Duration of project is required"),
+  nameOfFundingAgency: Yup.string().required(
+    "Name of funding agency is required"
+  ),
+  typeOfAgency: Yup.string().required("Type of agency is required"),
 });
 
 function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
-        nameOfProject: "",
-        nameOfInvestigator: "",
-        deptOfInvestigator: "",
-        yearOfAward: "",
-        amountSanctioned: "",
-        durationOfProject: "",
-        nameOfFundingAgency: "",
-        typeOfAgency: "",
+      nameOfProject: "",
+      nameOfInvestigator: "",
+      deptOfInvestigator: "",
+      yearOfAward: "",
+      amountSanctioned: "",
+      durationOfProject: "",
+      nameOfFundingAgency: "",
+      typeOfAgency: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -47,64 +51,85 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_3_1_1 && setTableData(formData.form_3_1_1);
-  //   }, []);
+  useEffect(() => {
+    formData.form_3_1_1 && setTableData(formData.form_3_1_1);
+  }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_3_1_1: tableData });
-  //   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_3_1_1: tableData });
+  }, [tableData]);
 
   return (
     <div>
       <p className="mb-1">
-        <span className="font-bold">3.1.1</span> Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the year (INR in Lakhs).
+        <span className="font-bold">3.1.1</span> Grants received from Government
+        and non-governmental agencies for research projects / endowments in the
+        institution during the year (INR in Lakhs).
       </p>
       <p className="mb-3">
-        <span className="font-bold">3.1.3</span> Number  of departments having Research projects funded by government and non government agencies during the year.
+        <span className="font-bold">3.1.3</span> Number of departments having
+        Research projects funded by government and non government agencies
+        during the year.
       </p>
 
       <FormWrapper>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="nameOfProject"
-                    name="nameOfProject"
-                    label="Name of project"
-                    value={formik.values.nameOfProject}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfProject && Boolean(formik.errors.nameOfProject)}
-                    helperText={formik.touched.nameOfProject && formik.errors.nameOfProject}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="nameOfProject"
+                name="nameOfProject"
+                label="Name of project"
+                value={formik.values.nameOfProject}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfProject &&
+                  Boolean(formik.errors.nameOfProject)
+                }
+                helperText={
+                  formik.touched.nameOfProject && formik.errors.nameOfProject
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="nameOfInvestigator"
-                    name="nameOfInvestigator"
-                    label="Name of investigator"
-                    value={formik.values.nameOfInvestigator}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfInvestigator && Boolean(formik.errors.nameOfInvestigator)}
-                    helperText={formik.touched.nameOfInvestigator && formik.errors.nameOfInvestigator}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="nameOfInvestigator"
+                name="nameOfInvestigator"
+                label="Name of investigator"
+                value={formik.values.nameOfInvestigator}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfInvestigator &&
+                  Boolean(formik.errors.nameOfInvestigator)
+                }
+                helperText={
+                  formik.touched.nameOfInvestigator &&
+                  formik.errors.nameOfInvestigator
+                }
+              />
             </Grid>
             <Grid item xs={12} md={3}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="deptOfInvestigator"
-                    name="deptOfInvestigator"
-                    label="Department of investigator"
-                    value={formik.values.deptOfInvestigator}
-                    onChange={formik.handleChange}
-                    error={formik.touched.deptOfInvestigator && Boolean(formik.errors.deptOfInvestigator)}
-                    helperText={formik.touched.deptOfInvestigator && formik.errors.deptOfInvestigator}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="deptOfInvestigator"
+                name="deptOfInvestigator"
+                label="Department of investigator"
+                value={formik.values.deptOfInvestigator}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.deptOfInvestigator &&
+                  Boolean(formik.errors.deptOfInvestigator)
+                }
+                helperText={
+                  formik.touched.deptOfInvestigator &&
+                  formik.errors.deptOfInvestigator
+                }
+              />
             </Grid>
             <Grid item xs={6} md={3}>
               <DatePicker
@@ -131,70 +156,91 @@ function Form({ formData, setFormData }) {
                       formik.touched.yearOfAward &&
                       Boolean(formik.errors.yearOfAward),
                     helperText:
-                      formik.touched.yearOfAward &&
-                      formik.errors.yearOfAward,
+                      formik.touched.yearOfAward && formik.errors.yearOfAward,
                   },
                 }}
               />
             </Grid>
             <Grid item xs={6} md={3}>
-                <TextField
-                    fullWidth
-                    type="number"
-                    variant="outlined"
-                    id="amountSanctioned"
-                    name="amountSanctioned"
-                    label="Amount sanctioned(in lakhs)"
-                    value={formik.values.amountSanctioned}
-                    onChange={formik.handleChange}
-                    error={formik.touched.amountSanctioned && Boolean(formik.errors.amountSanctioned)}
-                    helperText={formik.touched.amountSanctioned && formik.errors.amountSanctioned}
-                />
+              <TextField
+                fullWidth
+                type="number"
+                variant="outlined"
+                id="amountSanctioned"
+                name="amountSanctioned"
+                label="Amount sanctioned(in lakhs)"
+                value={formik.values.amountSanctioned}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.amountSanctioned &&
+                  Boolean(formik.errors.amountSanctioned)
+                }
+                helperText={
+                  formik.touched.amountSanctioned &&
+                  formik.errors.amountSanctioned
+                }
+              />
             </Grid>
             <Grid item xs={12} md={3}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="durationOfProject"
-                    name="durationOfProject"
-                    label="Duration of project"
-                    value={formik.values.durationOfProject}
-                    onChange={formik.handleChange}
-                    error={formik.touched.durationOfProject && Boolean(formik.errors.durationOfProject)}
-                    helperText={formik.touched.durationOfProject && formik.errors.durationOfProject}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="durationOfProject"
+                name="durationOfProject"
+                label="Duration of project"
+                value={formik.values.durationOfProject}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.durationOfProject &&
+                  Boolean(formik.errors.durationOfProject)
+                }
+                helperText={
+                  formik.touched.durationOfProject &&
+                  formik.errors.durationOfProject
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    variant="outlined"
-                    id="nameOfFundingAgency"
-                    name="nameOfFundingAgency"
-                    label="Name of funding agency"
-                    value={formik.values.nameOfFundingAgency}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfFundingAgency && Boolean(formik.errors.nameOfFundingAgency)}
-                    helperText={formik.touched.nameOfFundingAgency && formik.errors.nameOfFundingAgency}
-                />
+              <TextField
+                fullWidth
+                variant="outlined"
+                id="nameOfFundingAgency"
+                name="nameOfFundingAgency"
+                label="Name of funding agency"
+                value={formik.values.nameOfFundingAgency}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfFundingAgency &&
+                  Boolean(formik.errors.nameOfFundingAgency)
+                }
+                helperText={
+                  formik.touched.nameOfFundingAgency &&
+                  formik.errors.nameOfFundingAgency
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    select
-                    variant="outlined"
-                    id="typeOfAgency"
-                    name="typeOfAgency"
-                    label="Type of funding agency"
-                    value={formik.values.typeOfAgency}
-                    onChange={formik.handleChange}
-                    error={formik.touched.typeOfAgency && Boolean(formik.errors.typeOfAgency)}
-                    helperText={formik.touched.typeOfAgency && formik.errors.typeOfAgency}
-                >
-                    <MenuItem value="Government">Government</MenuItem>
-                    <MenuItem value="Non-government">Non-government</MenuItem>
-                </TextField>
+              <TextField
+                fullWidth
+                select
+                variant="outlined"
+                id="typeOfAgency"
+                name="typeOfAgency"
+                label="Type of funding agency"
+                value={formik.values.typeOfAgency}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.typeOfAgency &&
+                  Boolean(formik.errors.typeOfAgency)
+                }
+                helperText={
+                  formik.touched.typeOfAgency && formik.errors.typeOfAgency
+                }
+              >
+                <MenuItem value="Government">Government</MenuItem>
+                <MenuItem value="Non-government">Non-government</MenuItem>
+              </TextField>
             </Grid>
-            
 
             <Grid item xs={12} container justifyContent="flex-end">
               <CustomButton
@@ -216,7 +262,9 @@ function Form({ formData, setFormData }) {
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
                 <th className="p-2">Name of the Project/ Endowments, Chairs</th>
-                <th className="p-2">Name of Principal Investigator/Co-investigator</th>
+                <th className="p-2">
+                  Name of Principal Investigator/Co-investigator
+                </th>
                 <th className="p-2">Department of Principal Investigator</th>
                 <th className="p-2">Year of Award</th>
                 <th className="p-2">Amount Sanctioned</th>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Grid, TextField, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
   link: Yup.string().required("Link is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       roomNo: "",
@@ -37,8 +37,16 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_4_1_3 && setTableData(formData.form_4_1_3);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_4_1_3:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-2">
         <span className="font-bold">4.1.3</span> Number of classrooms and
         seminar halls with ICT- enabled facilities such as smart class, LMS,

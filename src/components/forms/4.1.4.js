@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Grid, TextField, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   expOnPhysicalFacilities: Yup.number().required("Expenditure on physical facilities is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
         year: "",
@@ -44,8 +44,16 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_4_1_4 && setTableData(formData.form_4_1_4);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_4_1_4:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-1">
         <span className="font-bold">4.1.4</span> Expenditure, excluding salary for infrastructure augmentation during the year (INR in Lakhs).
       </p>

@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
   noOfStudentsAdmitted: Yup.number().required("Number of students is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       programmeName: "",
@@ -48,7 +48,7 @@ function Form() {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">2.1.1</span> Enrolment Number
       </p>

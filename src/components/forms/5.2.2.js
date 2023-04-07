@@ -10,21 +10,25 @@ import * as Yup from "yup";
 import FormWrapper from "../../components/FormWrapper";
 
 const validationSchema = Yup.object({
-    year: Yup.number().required("Year is required"),
-    nameOfStudent: Yup.string().required("Name of student is required"),
-    program: Yup.string().required("Programme is required"),
-    nameOfJoiningInstitution: Yup.string().required("Name of joining institution is required"),
-    nameOfProgramJoined: Yup.string().required("Name of program joined is required"),
+  year: Yup.number().required("Year is required"),
+  nameOfStudent: Yup.string().required("Name of student is required"),
+  program: Yup.string().required("Programme is required"),
+  nameOfJoiningInstitution: Yup.string().required(
+    "Name of joining institution is required"
+  ),
+  nameOfProgramJoined: Yup.string().required(
+    "Name of program joined is required"
+  ),
 });
 
 function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
-        year: "",
-        nameOfStudent: "",
-        program: "",
-        nameOfJoiningInstitution: "",
-        nameOfProgramJoined: "",
+      year: "",
+      nameOfStudent: "",
+      program: "",
+      nameOfJoiningInstitution: "",
+      nameOfProgramJoined: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -41,18 +45,19 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_5_2_2 && setTableData(formData.form_5_2_2);
-  //   }, []);
+  useEffect(() => {
+    formData.form_5_2_2 && setTableData(formData.form_5_2_2);
+  }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_5_2_2: tableData });
-  //   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_5_2_2: tableData });
+  }, [tableData]);
 
   return (
     <div>
       <p className="mb-3">
-        <span className="font-bold">5.2.2</span> Number of students progressing to higher education during the year.
+        <span className="font-bold">5.2.2</span> Number of students progressing
+        to higher education during the year.
       </p>
 
       <FormWrapper>
@@ -66,9 +71,7 @@ function Form({ formData, setFormData }) {
                 name="year"
                 label="Year"
                 value={
-                  formik.values.year
-                    ? new Date(formik.values.year, 0, 1)
-                    : null
+                  formik.values.year ? new Date(formik.values.year, 0, 1) : null
                 }
                 onChange={(newValue) => {
                   const selectedYear = newValue.getFullYear();
@@ -79,69 +82,81 @@ function Form({ formData, setFormData }) {
                   textField: {
                     fullWidth: true,
                     variant: "outlined",
-                    error:
-                      formik.touched.year &&
-                      Boolean(formik.errors.year),
-                    helperText:
-                      formik.touched.year &&
-                      formik.errors.year,
+                    error: formik.touched.year && Boolean(formik.errors.year),
+                    helperText: formik.touched.year && formik.errors.year,
                   },
                 }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
-                <TextField
-                    fullWidth
-                    id="nameOfStudent"
-                    name="nameOfStudent"
-                    label="Name of student enrolling into higher education"
-                    variant="outlined"
-                    value={formik.values.nameOfStudent}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfStudent && Boolean(formik.errors.nameOfStudent)}
-                    helperText={formik.touched.nameOfStudent && formik.errors.nameOfStudent}
-                />
+              <TextField
+                fullWidth
+                id="nameOfStudent"
+                name="nameOfStudent"
+                label="Name of student enrolling into higher education"
+                variant="outlined"
+                value={formik.values.nameOfStudent}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfStudent &&
+                  Boolean(formik.errors.nameOfStudent)
+                }
+                helperText={
+                  formik.touched.nameOfStudent && formik.errors.nameOfStudent
+                }
+              />
             </Grid>
             <Grid item xs={12} md={4}>
-                <TextField
-                    fullWidth
-                    id="program"
-                    name="program"
-                    label="Program graduated from"
-                    variant="outlined"
-                    value={formik.values.program}
-                    onChange={formik.handleChange}
-                    error={formik.touched.program && Boolean(formik.errors.program)}
-                    helperText={formik.touched.program && formik.errors.program}
-                />
+              <TextField
+                fullWidth
+                id="program"
+                name="program"
+                label="Program graduated from"
+                variant="outlined"
+                value={formik.values.program}
+                onChange={formik.handleChange}
+                error={formik.touched.program && Boolean(formik.errors.program)}
+                helperText={formik.touched.program && formik.errors.program}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    id="nameOfJoiningInstitution"
-                    name="nameOfJoiningInstitution"
-                    label="Name of institution joined"
-                    variant="outlined"
-                    value={formik.values.nameOfJoiningInstitution}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfJoiningInstitution && Boolean(formik.errors.nameOfJoiningInstitution)}
-                    helperText={formik.touched.nameOfJoiningInstitution && formik.errors.nameOfJoiningInstitution}
-                />
+              <TextField
+                fullWidth
+                id="nameOfJoiningInstitution"
+                name="nameOfJoiningInstitution"
+                label="Name of institution joined"
+                variant="outlined"
+                value={formik.values.nameOfJoiningInstitution}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfJoiningInstitution &&
+                  Boolean(formik.errors.nameOfJoiningInstitution)
+                }
+                helperText={
+                  formik.touched.nameOfJoiningInstitution &&
+                  formik.errors.nameOfJoiningInstitution
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    id="nameOfProgramJoined"
-                    name="nameOfProgramJoined"
-                    label="Name of program admitted to"
-                    variant="outlined"
-                    value={formik.values.nameOfProgramJoined}
-                    onChange={formik.handleChange}
-                    error={formik.touched.nameOfProgramJoined && Boolean(formik.errors.nameOfProgramJoined)}
-                    helperText={formik.touched.nameOfProgramJoined && formik.errors.nameOfProgramJoined}
-                />
+              <TextField
+                fullWidth
+                id="nameOfProgramJoined"
+                name="nameOfProgramJoined"
+                label="Name of program admitted to"
+                variant="outlined"
+                value={formik.values.nameOfProgramJoined}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.nameOfProgramJoined &&
+                  Boolean(formik.errors.nameOfProgramJoined)
+                }
+                helperText={
+                  formik.touched.nameOfProgramJoined &&
+                  formik.errors.nameOfProgramJoined
+                }
+              />
             </Grid>
-            
 
             <Grid item xs={12} container justifyContent="flex-end">
               <CustomButton
@@ -163,7 +178,9 @@ function Form({ formData, setFormData }) {
             <thead className="border-b-2 border-blue-700 text-left">
               <tr>
                 <th className="p-2">Year</th>
-                <th className="p-2">Name of student enrolling into higher education</th>
+                <th className="p-2">
+                  Name of student enrolling into higher education
+                </th>
                 <th className="p-2">Program graduated from</th>
                 <th className="p-2">Name of institution joined</th>
                 <th className="p-2">Name of programme admitted to</th>

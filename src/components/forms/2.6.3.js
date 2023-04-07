@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Grid, TextField, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -42,13 +41,13 @@ function Form({ formData, setFormData }) {
     setTableData(data);
   };
 
-  //   useEffect(() => {
-  //     formData.form_1_3_2 && setTableData(formData.form_1_3_2);
-  //   }, []);
+  useEffect(() => {
+    formData.form_1_3_2 && setTableData(formData.form_1_3_2);
+  }, []);
 
-  //   useEffect(() => {
-  //     setFormData({ ...formData, form_1_3_2: tableData });
-  //   }, [tableData]);
+  useEffect(() => {
+    setFormData({ ...formData, form_1_3_2: tableData });
+  }, [tableData]);
 
   return (
     <div>
@@ -69,9 +68,7 @@ function Form({ formData, setFormData }) {
                 name="year"
                 label="Year"
                 value={
-                  formik.values.year
-                    ? new Date(formik.values.year, 0, 1)
-                    : null
+                  formik.values.year ? new Date(formik.values.year, 0, 1) : null
                 }
                 onChange={(newValue) => {
                   const selectedYear = newValue.getFullYear();
@@ -82,12 +79,8 @@ function Form({ formData, setFormData }) {
                   textField: {
                     fullWidth: true,
                     variant: "outlined",
-                    error:
-                      formik.touched.year &&
-                      Boolean(formik.errors.year),
-                    helperText:
-                      formik.touched.year &&
-                      formik.errors.year,
+                    error: formik.touched.year && Boolean(formik.errors.year),
+                    helperText: formik.touched.year && formik.errors.year,
                   },
                 }}
               />
@@ -129,42 +122,44 @@ function Form({ formData, setFormData }) {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    type="number"
-                    variant="outlined"
-                    id="noOfStudentsAppeared"
-                    name="noOfStudentsAppeared"
-                    label="Number of students appeared in the final year examination"
-                    value={formik.values.noOfStudentsAppeared}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.noOfStudentsAppeared &&
-                        Boolean(formik.errors.noOfStudentsAppeared)
-                    }
-                    helperText={
-                        formik.touched.noOfStudentsAppeared && formik.errors.noOfStudentsAppeared
-                    }
-                />
+              <TextField
+                fullWidth
+                type="number"
+                variant="outlined"
+                id="noOfStudentsAppeared"
+                name="noOfStudentsAppeared"
+                label="Number of students appeared in the final year examination"
+                value={formik.values.noOfStudentsAppeared}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.noOfStudentsAppeared &&
+                  Boolean(formik.errors.noOfStudentsAppeared)
+                }
+                helperText={
+                  formik.touched.noOfStudentsAppeared &&
+                  formik.errors.noOfStudentsAppeared
+                }
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-                <TextField
-                    fullWidth
-                    type="number"
-                    variant="outlined"
-                    id="noOfStudentsPassed"
-                    name="noOfStudentsPassed"
-                    label="Number of students passed in the final year examination"
-                    value={formik.values.noOfStudentsPassed}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.noOfStudentsPassed &&
-                        Boolean(formik.errors.noOfStudentsPassed)
-                    }
-                    helperText={
-                        formik.touched.noOfStudentsPassed && formik.errors.noOfStudentsPassed
-                    }
-                />
+              <TextField
+                fullWidth
+                type="number"
+                variant="outlined"
+                id="noOfStudentsPassed"
+                name="noOfStudentsPassed"
+                label="Number of students passed in the final year examination"
+                value={formik.values.noOfStudentsPassed}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.noOfStudentsPassed &&
+                  Boolean(formik.errors.noOfStudentsPassed)
+                }
+                helperText={
+                  formik.touched.noOfStudentsPassed &&
+                  formik.errors.noOfStudentsPassed
+                }
+              />
             </Grid>
 
             <Grid item xs={12} container justifyContent="flex-end">

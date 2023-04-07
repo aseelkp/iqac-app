@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { CustomButton } from "@/components/styles";
 
@@ -31,7 +31,7 @@ function SignleDepartment() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     form_1_1_3: [],
-    fomr_3_2_2: [],
+    form_3_2_2: [],
     form_3_3_2: [],
     form_3_3_3: [],
     form_3_4_3: [],

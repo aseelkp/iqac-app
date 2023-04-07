@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, TextField, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
   yearOfImplementation: Yup.number().required("Year of Implementation is required"),
 });
 
-function Form() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
         areaOfGovernance: "",
@@ -37,8 +37,16 @@ function Form() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_6_2_3 && setTableData(formData.form_6_2_3);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_6_2_3:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-1">
         <span className="font-bold">6.2.3</span> Implementation of e-governance in areas of operation;
       </p>
