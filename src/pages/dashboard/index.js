@@ -7,7 +7,7 @@ import React from "react";
 const Dashboard = () => {
   const titlesConfig = [
     {
-      title: "NSS AND NCC",
+      title: "NSS / NCC",
       path: "/forms/nss-ncc",
     },
     {
