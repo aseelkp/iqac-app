@@ -48,7 +48,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">5.3.3</span> Number of sports and cultural
         events/competitions in which students of the Institution participated

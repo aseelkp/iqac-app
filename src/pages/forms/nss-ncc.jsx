@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Stepper, Step, StepLabel, TextField, MenuItem } from "@mui/material";
 import { CustomButton } from "@/components/styles";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 // Forms
 import AwardsAndRecognitions from "@/components/forms/3.4.2";
@@ -18,6 +20,7 @@ const steps = [
 ];
 
 function NssNcc() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [clubName, setClubName] = useState("NSS");
   const [formData, setFormData] = useState({
@@ -32,11 +35,17 @@ function NssNcc() {
     setFormData,
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
-      createNssNcc({ clubName, data:formData });
-      alert("Data submitted successfully");
+      try{
+        await createNssNcc({ clubName, data: formData });
+        toast.success("Form Submitted successfully");
+        router.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
     }
   };
 

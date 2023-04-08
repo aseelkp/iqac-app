@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { signup } from "@/services/authService";
 import { createUser } from "@/services/userService";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
   const handleSubmit = async (event) => {
@@ -25,7 +25,6 @@ const Dashboard = () => {
 
   return (
     <Layout>
-        <Toaster />
       <div className="flex h-full justify-center items-center">
         <Container component="main" maxWidth="xs">
           <CssBaseline />
