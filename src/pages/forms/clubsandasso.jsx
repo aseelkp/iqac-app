@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Stepper, Step, StepLabel, TextField } from "@mui/material";
 import { CustomButton } from "@/components/styles";
 import { createClub } from "@/services/dataService";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 // Forms
 import Workshops from "@/components/forms/3.2.2";
@@ -19,6 +21,7 @@ const steps = [
 ];
 
 function ClubsandAsso() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [clubName, setClubName] = useState("Connect");
   const [formData, setFormData] = useState({
@@ -34,10 +37,17 @@ function ClubsandAsso() {
     setFormData,
   };
 
-  const handleNext = () => {
+  const handleNext = async() => {
     if (step !== steps.length - 1) setStep(step + 1);
-    else{ 
-      createClub({ clubName, data:formData });
+    else {
+      try {
+        await createClub({ clubName, data: formData });
+        toast.success("Form Submitted successfully");
+        router.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
     }
   };
 
@@ -83,11 +93,7 @@ function ClubsandAsso() {
           >
             Back
           </CustomButton>
-          <CustomButton
-            variant="contained"
-            color="info"
-            onClick={handleNext}
-          >
+          <CustomButton variant="contained" color="info" onClick={handleNext}>
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>
         </div>

@@ -1,45 +1,42 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import Layout from "@/components/Layout/layout";
 import { CustomButton } from "@/components/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { signup } from "@/services/authService";
+import { createUser } from "@/services/userService";
+import toast from 'react-hot-toast';
 
-
-
-export default function SignIn() {
-  const handleSubmit = (event) => {
+const Dashboard = () => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    try {
+      const data = new FormData(event.currentTarget);
+      const userRef = await signup(data.get("email"), data.get("password"));
+      await createUser(userRef.user.uid, data.get("username"), data.get("email"));
+      toast.success("User added successfully");
+    } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+    }
   };
 
   return (
-      <div className="flex h-screen justify-center items-center">
+    <Layout>
+      <div className="flex h-full justify-center items-center">
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h5">
-              Sign in
+            <Typography component="h1" variant="h5" className="font-bold">
+              Add New User
             </Typography>
             <Box
               component="form"
@@ -61,6 +58,14 @@ export default function SignIn() {
                 margin="normal"
                 required
                 fullWidth
+                id="username"
+                label="User Name"
+                name="username"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 name="password"
                 label="Password"
                 type="password"
@@ -71,13 +76,16 @@ export default function SignIn() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 , backgroundColor: "#90CAF9 !important"}}
+                sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Add User
               </CustomButton>
             </Box>
           </Box>
         </Container>
       </div>
+    </Layout>
   );
-}
+};
+
+export default Dashboard;

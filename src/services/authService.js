@@ -1,4 +1,4 @@
-import {auth} from "@app/services/firebaseClient";
+import {auth} from "@/services/firebaseConfig";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "@firebase/auth";
 
 export const signup = (email, password) => {

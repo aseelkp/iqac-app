@@ -12,6 +12,7 @@ export default function SearchBar() {
   return (
     <Container maxWidth="md" sx={{ width: "fit-content" }}>
       <TextField
+        size="small"
         id="search"
         type="search"
         label="Search"

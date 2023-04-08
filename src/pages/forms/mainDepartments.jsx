@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Stepper, Step, StepLabel, TextField } from "@mui/material";
 import { CustomButton } from "@/components/styles";
 import { createMainDepartment } from "@/services/dataService";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 // Forms
 import Form1 from "@/components/forms/1.1.3";
@@ -50,6 +52,7 @@ const steps = [
 ];
 
 function SignleDepartment() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [department, setDepartment] = useState("computer science");
   const [formData, setFormData] = useState({
@@ -62,10 +65,16 @@ function SignleDepartment() {
     setFormData,
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
-      createMainDepartment({department, data: formData})
+      try{
+        const res = await createMainDepartment({department, data: formData})
+        toast.success("Department Created Successfully")
+        router.push("/dashboard")
+      } catch(err){
+        toast.error("Something went wrong")
+      }
     }
   };
 

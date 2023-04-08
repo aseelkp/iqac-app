@@ -53,7 +53,7 @@ function Form({ formData, setFormData }) {
   }, [tableData]);
 
   return (
-    <div className="p-8">
+    <div>
       <p className="mb-3">
         <span className="font-bold">5.3.1</span> Number of awards/medals for
         outstanding performance in sports/cultural activities at

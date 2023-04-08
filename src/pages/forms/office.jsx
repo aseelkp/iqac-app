@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { CustomButton } from "@/components/styles";
 import { createOffice } from "@/services/dataService";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 // Forms
 import Form1 from "@/components/forms/2.2";
@@ -27,6 +29,7 @@ const steps = [
 ];
 
 function ClubsandAsso() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     form_2_2: [],
@@ -45,10 +48,17 @@ function ClubsandAsso() {
     setFormData,
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
-      createOffice(formData)
+      try{
+        await createOffice(formData);
+        toast.success("Form Submitted successfully");
+        router.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
     }
   };
 

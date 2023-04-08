@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { CustomButton } from "@/components/styles";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 // Forms
 import AwardsAndRecognitions from "@/components/forms/5.3.1";
@@ -14,6 +16,7 @@ const steps = [
 ];
 
 function PhysicalEdu() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     form_5_3_1: [],
@@ -25,11 +28,17 @@ function PhysicalEdu() {
     setFormData,
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
-      createPhysicalEducation(formData)
-      alert("Form Submitted Successfully")
+      try{
+        await createPhysicalEducation(formData);
+        toast.success("Form Submitted successfully");
+        router.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
     }
   };
 
