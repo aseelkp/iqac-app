@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { Grid, TextField, Button, IconButton } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Grid, TextField, IconButton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import { CustomButton } from "@/components/styles";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../../components/FormWrapper";
-import NccStepper from "../../../components/nss-ncc/NccStepper";
+import FormWrapper from "../FormWrapper";
+import { formatDate } from "../helpers/formatDate";
 
 const validationSchema = Yup.object({
   nameOfProgram: Yup.string().required("Name is required"),
@@ -19,14 +19,8 @@ const validationSchema = Yup.object({
   nameOfAgencies: Yup.string().required("Name of agency is required"),
 });
 
-function formatDate(date) {
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
-}
 
-function nccNss() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfProgram: "",
@@ -50,10 +44,16 @@ function nccNss() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_5_1_3 && setTableData(formData.form_5_1_3);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_5_1_3:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8 min-h-screen">
-      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
-      <NccStepper step={2} />
+    <div>
       <p>
         <span className="font-bold">5.1.3</span> Capacity building and skills
         enhancement initiatives taken by the institution include the following:
@@ -92,7 +92,7 @@ function nccNss() {
                 id="dateOfImplementation"
                 name="dateOfImplementation"
                 label="Date of implementation"
-                value={formik.values.dateOfImplementation}
+                value={formik.values.dateOfImplementation ? formik.values.dateOfImplementation : null}
                 onChange={(newValue) => {
                   formik.setFieldValue("dateOfImplementation", newValue);
                 }}
@@ -149,9 +149,9 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" endIcon={<AddIcon />} type="submit">
+              <CustomButton variant="contained" endIcon={<AddIcon />} type="submit">
                 Add
-              </Button>
+              </CustomButton>
             </Grid>
           </Grid>
         </form>
@@ -159,7 +159,7 @@ function nccNss() {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-          <table className="w-full">
+          <table className="w-full text-left">
             <thead className="border-b-2 border-blue-700">
               <tr>
                 <th className="p-2">Name of the Program</th>
@@ -172,11 +172,11 @@ function nccNss() {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.nameOfProgram}</td>
-                    <td className="p-2">{data.dateOfImplementation}</td>
-                    <td className="p-2">{data.noOfStudents}</td>
-                    <td className="p-2">{data.nameOfAgencies}</td>
-                    <td className="p-2">
+                    <td className="px-2">{data.nameOfProgram}</td>
+                    <td className="px-2">{data.dateOfImplementation}</td>
+                    <td className="px-2">{data.noOfStudents}</td>
+                    <td className="px-2">{data.nameOfAgencies}</td>
+                    <td className="text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"
@@ -192,20 +192,8 @@ function nccNss() {
           </table>
         </div>
       )}
-      <div className="flex justify-end mt-4">
-        <Link href="/Forms/nss-ncc/3.4.3">
-          <Button variant="contained" color="info" className="mr-4">
-            Back
-          </Button>
-        </Link>
-        <Link href="/Forms/nss-ncc/5.1.4">
-          <Button variant="contained" color="info">
-            Save and Continue
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 }
 
-export default nccNss;
+export default Form;

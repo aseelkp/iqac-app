@@ -7,7 +7,7 @@ const TableHeader = ({titles}) => {
         <TableHead>
             <TableRow>
                 {titles.map((title) => (
-                    <TableCell key={title.id} colSpan={title.colSpan}>{title.name}</TableCell>
+                    <TableCell key={title.id} colSpan={title.colSpan ? "" : title.colSpan }>{title.name}</TableCell>
                 ))}
             </TableRow>
         </TableHead>

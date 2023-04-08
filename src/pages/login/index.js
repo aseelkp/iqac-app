@@ -1,6 +1,7 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import { CustomButton } from "@/components/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -13,29 +14,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://connectemea.in/">
-        Connect
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -48,7 +26,6 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
       <div className="flex h-screen justify-center items-center">
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -89,31 +66,17 @@ export default function SignIn() {
                 id="password"
                 autoComplete="current-password"
               />
-              <Button
+              <CustomButton
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 , backgroundColor: "#90CAF9 !important"}}
               >
                 Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
+              </CustomButton>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </div>
-    </ThemeProvider>
   );
 }

@@ -4,20 +4,21 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
 export default function TableContent({ Data, titles }) {
+
+  console.log(Data , "Data");
   return (
     <>
       {Data && (
         <TableBody>
-          {Data.map((obj, index) => (
+          {Data.map((row, index) => (
             <TableRow key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              {titles.map((item, index) => {
-                return (
-                      <TableCell key={index}>{String(obj[val])}</TableCell>
-                    )}
-                )
-              }
+              {titles.map((title) => (
+                  <TableCell key={title.id} align="left">
+                    {row[title.field]}
+                  </TableCell>
+                ))}
             </TableRow>
           ))}
         </TableBody>

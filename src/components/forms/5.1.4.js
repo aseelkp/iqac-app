@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { Grid, TextField, Button, IconButton, MenuItem } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Grid, TextField, IconButton, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import Link from "next/link";
+import { CustomButton } from "@/components/styles";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../../components/FormWrapper";
-import NccStepper from "../../../components/nss-ncc/NccStepper";
+import FormWrapper from "../FormWrapper";
 
 const validationSchema = Yup.object({
   yearOfActivity: Yup.string().required("Year is required"),
@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
   relevantLink: Yup.string().required("Relevant link is required"),
 });
 
-function nccNss() {
+function Form({ formData, setFormData }) {
   const [tableData, setTableData] = useState([]);
   const formik = useFormik({
     initialValues: {
@@ -47,10 +47,16 @@ function nccNss() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_5_1_4 && setTableData(formData.form_5_1_4);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_5_1_4:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
-      <NccStepper step={3} />
+    <div>
       <p>
         <span className="font-bold">5.1.4</span> Number of students benefitted
         by guidance for competitive examinations and career counseling offered
@@ -191,9 +197,9 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button variant="contained" endIcon={<AddIcon />} color="info" type="submit">
+              <CustomButton variant="contained" endIcon={<AddIcon />} color="info" type="submit">
                 Add
-              </Button>
+              </CustomButton>
             </Grid>
           </Grid>
         </form>
@@ -201,7 +207,7 @@ function nccNss() {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-          <table className="w-full">
+          <table className="w-full text-left">
             <thead className="border-b-2 border-blue-700">
               <tr>
                 <th className="p-2">Year of activity</th>
@@ -218,13 +224,13 @@ function nccNss() {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.yearOfActivity}</td>
-                    <td className="p-2">{data.typeOfActivity}</td>
-                    <td className="p-2">{data.nameOfProgram}</td>
-                    <td className="p-2">{data.noOfStudentsParticipated}</td>
-                    <td className="p-2">{data.noOfStudentsPlaced}</td>
-                    <td className="p-2">{data.relevantLink}</td>
-                    <td className="p-2">
+                    <td className="px-2">{data.yearOfActivity}</td>
+                    <td className="px-2">{data.typeOfActivity}</td>
+                    <td className="px-2">{data.nameOfActivity}</td>
+                    <td className="px-2">{data.noOfStudentsParticipated}</td>
+                    <td className="px-2">{data.noOfStudentsPlaced}</td>
+                    <td className="px-2 truncate max-w-xs text-link"><Link href={data.relevantLink} target="_blank">{data.relevantLink}</Link></td>
+                    <td className="text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"
@@ -240,18 +246,8 @@ function nccNss() {
           </table>
         </div>
       )}
-      <div className="flex justify-end mt-4">
-        <Link href="/Forms/nss-ncc/5.1.3">
-          <Button variant="contained" color="info" className="mr-4">
-            Back
-          </Button>
-        </Link>
-          <Button variant="contained" color="info">
-            Submit
-          </Button>
-        </div>
       </div>
   );
 }
 
-export default nccNss;
+export default Form;

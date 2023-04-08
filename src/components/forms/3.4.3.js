@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { Grid, TextField, Button, IconButton } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Grid, TextField, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import { CustomButton } from "@/components/styles";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormWrapper from "../../../components/FormWrapper";
-import NccStepper from "../../../components/nss-ncc/NccStepper";
+import FormWrapper from "../FormWrapper";
 
 const validationSchema = Yup.object({
   nameOfActivity: Yup.string().required("Required"),
@@ -19,7 +18,7 @@ const validationSchema = Yup.object({
   ).required("Required"),
 });
 
-function nccNss() {
+function Form({ formData, setFormData }) {
   const formik = useFormik({
     initialValues: {
       nameOfActivity: "",
@@ -43,10 +42,16 @@ function nccNss() {
     setTableData(data);
   };
 
+  useEffect(() => {
+    formData.form_3_4_3 && setTableData(formData.form_3_4_3);
+  }, []);
+
+  useEffect(() => {
+    setFormData({ ...formData, form_3_4_3:tableData });
+  }, [tableData]);
+
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-sky-950">NCC and NSS</h1>
-      <NccStepper step={1} />
+    <div>
       <p className="mb-3">
         <span className="font-bold">3.4.3</span> Number of extension and
         outreach Programmes conducted by the institution through NSS/
@@ -157,14 +162,14 @@ function nccNss() {
               />
             </Grid>
             <Grid item md={12} container justifyContent="flex-end">
-              <Button
+              <CustomButton
                 variant="contained"
                 endIcon={<AddIcon />}
                 color="info"
                 type="submit"
               >
                 Add
-              </Button>
+              </CustomButton>
             </Grid>
           </Grid>
         </form>
@@ -172,7 +177,7 @@ function nccNss() {
 
       {tableData.length > 0 && (
         <div className="w-full mt-4 p-6">
-          <table className="w-full">
+          <table className="w-full text-left">
             <thead className="border-b-2 border-blue-700">
               <tr>
                 <th className="p-2">Name of the activity</th>
@@ -186,12 +191,12 @@ function nccNss() {
               {tableData.map((data, index) => {
                 return (
                   <tr key={index}>
-                    <td className="p-2">{data.nameOfActivity}</td>
-                    <td className="p-2">{data.organisingUnit}</td>
-                    <td className="p-2">{data.nameOfScheme}</td>
-                    <td className="p-2">{data.yearOfActivity}</td>
-                    <td className="p-2">{data.noOfStudentsParticipated}</td>
-                    <td className="p-2">
+                    <td className="px-2">{data.nameOfActivity}</td>
+                    <td className="px-2">{data.organisingUnit}</td>
+                    <td className="px-2">{data.nameOfScheme}</td>
+                    <td className="px-2">{data.yearOfActivity}</td>
+                    <td className="px-2">{data.noOfStudentsParticipated}</td>
+                    <td className="px-2 text-right">
                       <IconButton
                         aria-label="delete"
                         color="error"
@@ -207,20 +212,8 @@ function nccNss() {
           </table>
         </div>
       )}
-      <div className="flex justify-end mt-4">
-        <Link href="/Forms/nss-ncc">
-          <Button variant="contained" color="info" className="mr-4">
-            Back
-          </Button>
-        </Link>
-        <Link href="/Forms/nss-ncc/5.1.3">
-          <Button variant="contained" color="info">
-            Save and Continue
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 }
 
-export default nccNss;
+export default Form;

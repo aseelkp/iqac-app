@@ -2,13 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.MuiPaper-rounded{
-    border-radius: 10px;
-    /* background-color: rgb(239, 244, 245); */
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+.MuiPaper-rounded {
+  /* box-shadow: 0 8px 32px 0 rgba(14, 18, 71, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+  border-radius: 10px;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    /* background-color: #f4f5ed; */
+  background: rgba(30,30,30);
+  /* background: #1a202c; */
+  color: white;
 }
+
