@@ -36,13 +36,13 @@ const Layout = ({ children }) => {
 
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-black bg-opacity-20 ">
+    <div className="flex flex-col h-screen overflow-hidden">
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <nav className="text-white m-3  bg-opacity-50 rounded-lg">
-          <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-            <Link href="/">
-              <div className="text-lg font-bold">Logo</div>
+        <nav className="text-white m-3 rounded-lg">
+          <div className="container mx-auto px-10 py-2 flex items-center justify-between">
+            <Link href="/dashboard">
+              <div className="text-2xl font-bold">IQAC DataHub</div>
             </Link>
             <SearchBar />
           </div>
