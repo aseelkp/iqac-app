@@ -21,16 +21,20 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const authRef = await login(data.get("email"), data.get("password"));
-    const userRef = await getUserById(authRef.user.uid);
-    if (userRef.data().role === "user") {
-      toast.success("You are logged in");
-      localStorage.setItem("user-auth", authRef.user.uid);
-      router.push("/dashboard");
-      return true;
+    try{
+      const data = new FormData(event.currentTarget);
+      const authRef = await login(data.get("email"), data.get("password"));
+      const userRef = await getUserById(authRef.user.uid);
+      if (userRef.data().role === "user") {
+        toast.success("You are logged in");
+        localStorage.setItem("user-auth", authRef.user.uid);
+        router.push("/dashboard");
+        return true;
+      }
+      toast.error("Invalid Credentials");
+    } catch (error) {
+      toast.error("Invalid Credentials");
     }
-    toast.error("Invalid Credentials");
   };
 
   return (

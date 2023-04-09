@@ -1,6 +1,6 @@
 import CardComponent from "@/components/Card/card";
 import Link from "next/link";
-import UserLayout from "@/components/Layout/UserLayout";
+import Layout from "@/components/Layout/layout";
 import { Box, Grid } from "@mui/material";
 import React from "react";
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
  
 
   return (
-    <UserLayout>
+    <Layout>
       <div className="mt-4 ml-10">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3} sx={{ mt: "30px" }}>
@@ -57,7 +57,7 @@ const Dashboard = () => {
           </Grid>
         </Box>
       </div>
-    </UserLayout>
+    </Layout>
   );
 };
 

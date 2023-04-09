@@ -15,7 +15,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (localStorage.getItem("admin-auth")) {
-      router.push("/admin");
+      router.push("/admin/dashboard");
     }
   }, []);
 
@@ -27,7 +27,7 @@ export default function SignIn() {
     if (userRef.data().role === "admin") {
         toast.success("You are logged in as an admin");
       localStorage.setItem("admin-auth", authRef.user.uid);
-      router.push("/admin");
+      router.push("/admin/dashboard");
       return true;
     }
     toast.error("You are not authorized to access this page");

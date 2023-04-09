@@ -89,3 +89,10 @@ export const CustomButton = styled(Button)(({theme}) => ({
   },
 }));
 //  Light mode #1976DB
+
+export const LogoutButton = styled(Button)(({theme}) => ({
+  backgroundColor: theme.palette.error.main + " !important",
+  "&:hover": {
+    backgroundColor: theme.palette.error.dark + " !important",
+  },
+}));
