@@ -12,10 +12,9 @@ module.exports = {
       white: "#fff",
       gray: "#9fa6b2",
       titleBg: "#03132a ",
-      gradientFrom: "#060397",
-      gradientTo: "#312DF8",
       link: "#0d6efd",
-      background: "#1a202c"
+      background: "#1a202c",
+      linkBg: "#143D75",
     },
 
     extend: {},

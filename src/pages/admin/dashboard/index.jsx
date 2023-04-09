@@ -2,9 +2,11 @@ import CardComponent from "@/components/Card/card";
 import Link from "next/link";
 import Layout from "@/components/Layout/layout";
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
+  const router = useRouter();
   const titlesConfig = [
     {
       title: "NSS / NCC",
@@ -40,17 +42,20 @@ const Dashboard = () => {
     },
   ];
 
- 
+  useEffect(() => {
+    if (localStorage.getItem("user-auth")) router.push("/dashboard");
+    if (!localStorage.getItem("admin-auth")) router.push("/admin/login");
+  }, []);
 
   return (
-    <Layout>
-      <div className="mt-4 ml-10">
+    <Layout page={0}>
+      <div className="mt-4 ml-5">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3} sx={{ mt: "30px" }}>
             {titlesConfig.map((title, index) => (
               <Grid item xs={4} key={index}>
                 <Link href={title.path}>
-                <CardComponent title={title.title} />
+                  <CardComponent title={title.title} />
                 </Link>
               </Grid>
             ))}

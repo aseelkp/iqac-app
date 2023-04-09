@@ -3,8 +3,11 @@ import Link from "next/link";
 import UserLayout from "@/components/Layout/UserLayout";
 import { Box, Grid } from "@mui/material";
 import React from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
+  const router = useRouter();
   const titlesConfig = [
     {
       title: "NSS / NCC",
@@ -40,7 +43,10 @@ const Dashboard = () => {
     },
   ];
 
- 
+  useEffect(() => {
+    if (localStorage.getItem("admin-auth")) router.push("/admin/dashboard");
+    if (!localStorage.getItem("user-auth")) router.push("/login");
+  }, []);
 
   return (
     <UserLayout>
@@ -50,7 +56,7 @@ const Dashboard = () => {
             {titlesConfig.map((title, index) => (
               <Grid item xs={4} key={index}>
                 <Link href={title.path}>
-                <CardComponent title={title.title} />
+                  <CardComponent title={title.title} />
                 </Link>
               </Grid>
             ))}

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Typography } from "@mui/material";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, page }) => {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -39,8 +39,8 @@ const Layout = ({ children }) => {
             <div className="text-2xl font-bold">IQAC DataHub</div>
           </Link>
           <Typography
-          className="text-gray"
-            variant="h6"
+          className="text-gray font-thin tracking-wider"
+            variant="h7"
             component="div"
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
@@ -58,10 +58,10 @@ const Layout = ({ children }) => {
         </div>
       </nav>
       <div className="flex flex-1">
-        <aside className="w-[15%] p-4 m-4  bg-opacity-50 rounded-lg flex justify-evenly ">
-          <ul className="mt-10">
+        <aside className="w-[15%] p-4 m-4 rounded-lg flex justify-evenly ">
+          <ul className="mt-10 w-full">
             {navLinks.map((link, index) => (
-              <li className="mb-8 flex" key={index}>
+              <li className={`mb-5 flex p-2 w-full rounded-md ${ page == index ? "bg-linkBg" : "" }`} key={index}>
                 <div className="mr-1">{link.icon}</div>
                 <Link href={link.path}>
                   <div className="ml-2">{link.title}</div>
