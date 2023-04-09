@@ -113,7 +113,7 @@ function Form({ formData, setFormData }) {
                 variant="outlined"
                 id="nameOfStudent"
                 name="nameOfStudent"
-                label="Number of participants"
+                label="Name of student"
                 value={formik.values.nameOfStudent}
                 onChange={formik.handleChange}
                 error={
