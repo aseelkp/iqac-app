@@ -15,7 +15,7 @@ const Dashboard = () => {
     try {
       const data = new FormData(event.currentTarget);
       const userRef = await signup(data.get("email"), data.get("password"));
-      await createUser(userRef.user.uid, data.get("username"), data.get("email"));
+      await createUser(userRef.user.uid, data.get("username"), data.get("email"), data.get("department"));
       toast.success("User added successfully");
     } catch (error) {
         console.log(error);
@@ -24,9 +24,9 @@ const Dashboard = () => {
   };
 
   return (
-    <Layout>
+    <Layout page={1}>
       <div className="flex h-full justify-center items-center">
-        <Container component="main" maxWidth="xs">
+        <Container className="-translate-x-1/4" component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
@@ -61,6 +61,14 @@ const Dashboard = () => {
                 id="username"
                 label="User Name"
                 name="username"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="department"
+                label="Department"
+                name="department"
               />
               <TextField
                 margin="normal"

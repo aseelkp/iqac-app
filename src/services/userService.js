@@ -1,10 +1,11 @@
 import {db} from "@/services/firebaseConfig";
 import { collection, doc, getDoc, getDocs, setDoc} from "@firebase/firestore";
 
-export const createUser = async (id, username, email) => {
+export const createUser = async (id, username, email, department) => {
     return setDoc(doc(db, "users", id), {
         username,
         email,
+        department,
         role: "user",
     });
 };
