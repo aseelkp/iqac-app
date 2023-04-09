@@ -5,17 +5,17 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useRouter } from "next/router";
-import toast from "react-hot-toast";
 import { login } from "@/services/authService";
 import { getUserById } from "@/services/userService";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 export default function SignIn() {
   const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem("user-auth")) {
-      router.push("/dashboard");
+    if (localStorage.getItem("admin-auth")) {
+      router.push("/admin");
     }
   }, []);
 
@@ -24,13 +24,13 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     const authRef = await login(data.get("email"), data.get("password"));
     const userRef = await getUserById(authRef.user.uid);
-    if (userRef.data().role === "user") {
-      toast.success("You are logged in");
-      localStorage.setItem("user-auth", authRef.user.uid);
-      router.push("/dashboard");
+    if (userRef.data().role === "admin") {
+        toast.success("You are logged in as an admin");
+      localStorage.setItem("admin-auth", authRef.user.uid);
+      router.push("/admin");
       return true;
     }
-    toast.error("Invalid Credentials");
+    toast.error("You are not authorized to access this page");
   };
 
   return (
@@ -78,7 +78,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "#90CAF9 !important" }}
+              sx={{ mt: 3, mb: 2 }}
             >
               Sign In
             </CustomButton>
