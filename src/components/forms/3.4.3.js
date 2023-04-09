@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Grid, TextField, IconButton } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import { CustomButton } from "@/components/styles";
@@ -123,22 +124,28 @@ function Form({ formData, setFormData }) {
               />
             </Grid>
             <Grid item md={6}>
-              <TextField
-                type="number"
-                fullWidth
-                variant="outlined"
+            <DatePicker
+                views={["year"]}
+                openTo="year"
                 id="yearOfActivity"
                 name="yearOfActivity"
-                label="Year of the activity"
-                value={formik.values.yearOfActivity}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.yearOfActivity &&
-                  Boolean(formik.errors.yearOfActivity)
+                label="Year Of Activity"
+                value={
+                  formik.values.yearOfActivity ? new Date(formik.values.yearOfActivity, 0, 1) : null
                 }
-                helperText={
-                  formik.touched.yearOfActivity && formik.errors.yearOfActivity
-                }
+                onChange={(newValue) => {
+                  const selectedYear = newValue.getFullYear();
+                  formik.setFieldValue("yearOfActivity", selectedYear);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    variant: "outlined",
+                    error: formik.touched.yearOfActivity && Boolean(formik.errors.yearOfActivity),
+                    helperText: formik.touched.yearOfActivity && formik.errors.yearOfActivity,
+                  },
+                }}
               />
             </Grid>
             <Grid item md={6}>
