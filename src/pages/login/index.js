@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { CustomButton } from "@/components/styles";
+import { useEffect, useState } from "react";
+import { LoadingBtn } from "@/components/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -10,8 +10,19 @@ import toast from "react-hot-toast";
 import { login } from "@/services/authService";
 import { getUserById } from "@/services/userService";
 
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email id")
+    .required("Email id is required"),
+  password: Yup.string().required("Password id required"),
+});
+
 export default function SignIn() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("user-auth")) {
@@ -19,23 +30,32 @@ export default function SignIn() {
     }
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try{
-      const data = new FormData(event.currentTarget);
-      const authRef = await login(data.get("email"), data.get("password"));
-      const userRef = await getUserById(authRef.user.uid);
-      if (userRef.data().role === "user") {
-        toast.success("You are logged in");
-        localStorage.setItem("user-auth", authRef.user.uid);
-        router.push("/dashboard");
-        return true;
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      setLoading(true);
+      try {
+        const authRef = await login(values.email, values.password);
+        const userRef = await getUserById(authRef.user.uid);
+        if (userRef.data().role === "user") {
+          toast.success("You are logged in");
+          localStorage.setItem("user-auth", authRef.user.uid);
+          router.push("/dashboard");
+          setLoading(false);
+          return true;
+        }
+        toast.error("Invalid Credentials");
+      } catch (error) {
+        toast.error("Invalid Credentials");
       }
-      toast.error("Invalid Credentials");
-    } catch (error) {
-      toast.error("Invalid Credentials");
-    }
-  };
+      formik.resetForm();
+      setLoading(false);
+    },
+  });
 
   return (
     <div className="flex h-screen justify-center items-center">
@@ -54,7 +74,7 @@ export default function SignIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -65,6 +85,10 @@ export default function SignIn() {
               id="email"
               label="Email Address"
               name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
               autoComplete="email"
               autoFocus
             />
@@ -76,16 +100,21 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
               autoComplete="current-password"
             />
-            <CustomButton
+            <LoadingBtn
+              loading={loading}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, backgroundColor: "#90CAF9 !important" }}
             >
               Sign In
-            </CustomButton>
+            </LoadingBtn>
           </Box>
         </Box>
       </Container>
