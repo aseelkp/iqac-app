@@ -1,12 +1,10 @@
 import * as React from "react";
-import { getNssNcc } from "@/services/dataService";
-import { useEffect } from "react";
-import { useState } from "react";
 import DataTable from ".";
 
-export default function T3_4_2() {
-  const [combinedData, setCombinedData] = useState([]);
-  console.log(combinedData, "combinedData");
+export default function T3_4_2({ data }) {
+
+
+
   const titles = [
     {
       id: 1,
@@ -29,22 +27,9 @@ export default function T3_4_2() {
       field: "yearOfAward",
     },
   ];
-
-  useEffect(() => {
-    const dataArr = [];
-    const getData = async () => {
-      const data = await getNssNcc();
-      data.forEach((doc) => {
-        dataArr.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
-      const combinedData = dataArr.flatMap((item) => item.data.form_3_4_2);
-      setCombinedData(combinedData);
-    };
-    getData();
-  }, []);
-
-  return <DataTable titles={titles} data={combinedData} />;
+  return (
+    <div className="w-full mt-3">
+      { <DataTable titles={titles} data={data}  />}
+    </div>
+  );
 }

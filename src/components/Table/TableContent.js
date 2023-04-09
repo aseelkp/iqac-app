@@ -5,7 +5,7 @@ import TableRow from "@mui/material/TableRow";
 
 export default function TableContent({ Data, titles }) {
 
-  console.log(Data , "Data");
+  // console.log(Data , "Data in table content");
   return (
     <>
       {Data && (
