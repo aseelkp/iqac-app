@@ -111,7 +111,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "#90CAF9 !important" }}
+              sx={{ mt: 3, mb: 2 }}
             >
               Sign In
             </LoadingBtn>
