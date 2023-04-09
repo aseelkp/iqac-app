@@ -1,4 +1,12 @@
-import { styled, Box, Toolbar, AppBar, Typography, Button } from "@mui/material";
+import {
+  styled,
+  Box,
+  Toolbar,
+  AppBar,
+  Typography,
+  Button,
+} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import Link from "next/link";
 
 export const ContentWrapper = styled(Box)(() => ({
@@ -79,7 +87,7 @@ export const NavButton = styled(Box)({
   },
 });
 
-export const CustomButton = styled(Button)(({theme}) => ({
+export const CustomButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#2196f3 !important",
   "&:hover": {
     backgroundColor: "#1769aa !important",
@@ -90,9 +98,16 @@ export const CustomButton = styled(Button)(({theme}) => ({
 }));
 //  Light mode #1976DB
 
-export const LogoutButton = styled(Button)(({theme}) => ({
+export const LogoutButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.error.main + " !important",
   "&:hover": {
     backgroundColor: theme.palette.error.dark + " !important",
+  },
+}));
+
+export const LoadingBtn = styled(LoadingButton)(({theme}) => ({
+  backgroundColor: theme.palette.info.main + " !important",
+  "&:hover": {
+    backgroundColor: theme.palette.info.dark + " !important",
   },
 }));
