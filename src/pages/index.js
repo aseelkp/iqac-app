@@ -9,11 +9,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const router = useRouter()
-
+  useEffect(() => {
+    router.push("/login")
+  }, [])
+  
   
   return (
     <>
-      <h1>This is the IQAC APP🌚</h1>
+      <h1 className='self-center'>This is the IQAC APP🌚</h1>
     </>
   )
 }
