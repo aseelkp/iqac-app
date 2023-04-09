@@ -21,16 +21,20 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const authRef = await login(data.get("email"), data.get("password"));
-    const userRef = await getUserById(authRef.user.uid);
-    if (userRef.data().role === "admin") {
+    try{
+      const data = new FormData(event.currentTarget);
+      const authRef = await login(data.get("email"), data.get("password"));
+      const userRef = await getUserById(authRef.user.uid);
+      if (userRef.data().role === "admin") {
         toast.success("You are logged in as an admin");
-      localStorage.setItem("admin-auth", authRef.user.uid);
-      router.push("/admin/dashboard");
-      return true;
+        localStorage.setItem("admin-auth", authRef.user.uid);
+        router.push("/admin/dashboard");
+        return true;
+      }
+      toast.error("Invalid Credentials");
+    } catch (error) {
+      toast.error("You are not authorized to access this page");
     }
-    toast.error("You are not authorized to access this page");
   };
 
   return (

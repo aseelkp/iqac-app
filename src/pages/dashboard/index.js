@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (localStorage.getItem("admin-auth")) router.push("/admin/dashboard");
-    if (!localStorage.getItem("user-auth")) router.push("/login");
+    else if (!localStorage.getItem("user-auth")) router.push("/login");
   }, []);
 
   return (

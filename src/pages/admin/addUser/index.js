@@ -8,8 +8,11 @@ import Container from "@mui/material/Container";
 import { signup } from "@/services/authService";
 import { createUser } from "@/services/userService";
 import toast from 'react-hot-toast';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const Dashboard = () => {
+const AddUser = () => {
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -22,6 +25,11 @@ const Dashboard = () => {
         toast.error("Something went wrong");
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("user-auth")) router.push("/login");
+    else if (!localStorage.getItem("admin-auth")) router.push("/admin/login");
+  }, []);
 
   return (
     <Layout page={1}>
@@ -96,4 +104,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AddUser;
