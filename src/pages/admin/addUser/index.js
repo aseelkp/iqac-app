@@ -1,16 +1,12 @@
 import Layout from "@/components/Layout/layout";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import { CssBaseline, TextField, Box, Typography, Container, MenuItem } from "@mui/material";
 import { signup } from "@/services/authService";
 import { createUser } from "@/services/userService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { LoadingBtn } from "@/components/styles";
-
+import { departments } from "@/constants/departments";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -114,6 +110,7 @@ const AddUser = () => {
               <TextField
                 margin="normal"
                 required
+                select
                 fullWidth
                 id="department"
                 label="Department"
@@ -126,7 +123,13 @@ const AddUser = () => {
                 helperText={
                   formik.touched.department && formik.errors.department
                 }
-              />
+              >
+                {departments.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 margin="normal"
                 required

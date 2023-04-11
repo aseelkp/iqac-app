@@ -80,7 +80,12 @@ function NssNcc() {
             </TextField>
             </div>
           )}
-          {step === 0 && <AwardsAndRecognitions {...props} />}
+          {step === 0 && (
+            <div className="flex gap-10 flex-col">
+            <AwardsAndRecognitions {...props} />
+            <ExtensionPrograms {...props} />
+            </div>
+            )}
           {step === 1 && <ExtensionPrograms {...props} />}
           {step === 2 && <CapacityBuilding {...props} />}
           {step === 3 && <GuidanceAndCounselling {...props} />}

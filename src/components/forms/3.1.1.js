@@ -4,7 +4,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { Delete } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import { CustomButton } from "@/components/styles";
-
+import { departments } from "@/constants/departments";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormWrapper from "../../components/FormWrapper";
@@ -115,6 +115,7 @@ function Form({ formData, setFormData }) {
             <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
+                select
                 variant="outlined"
                 id="deptOfInvestigator"
                 name="deptOfInvestigator"
@@ -129,7 +130,13 @@ function Form({ formData, setFormData }) {
                   formik.touched.deptOfInvestigator &&
                   formik.errors.deptOfInvestigator
                 }
-              />
+              >
+                {departments.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
             <Grid item xs={6} md={3}>
               <DatePicker
