@@ -4,6 +4,7 @@ import { CustomButton } from "@/components/styles";
 import { createSingleDepartment } from "@/services/dataService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import DepartmentSelect from "@/components/DepartmentSelect/DepartmentSelect";
 
 // Forms
 import Form_1 from "@/components/forms/1.1.3";
@@ -33,7 +34,7 @@ const steps = [
 function SignleDepartment() {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [department, setDepartment] = useState("computer science");
+  const [department, setDepartment] = useState();
   const [formData, setFormData] = useState({
     form_1_1_3: [],
     form_3_2_2: [],
@@ -56,9 +57,13 @@ function SignleDepartment() {
     if (step !== steps.length - 1) setStep(step + 1);
     else {
       try{
+        if(!department){
+          toast.error("Please select a Department in step 1");
+        } else {
         await createSingleDepartment({ department, data: formData });
         toast.success("Form Submitted successfully");
         router.push("/dashboard");
+        }
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
@@ -73,9 +78,9 @@ function SignleDepartment() {
       </div>
       <div className="m-8">
         <Stepper activeStep={step} alternativeLabel className="my-5 mt-7">
-          {steps.map((label) => (
+          {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel></StepLabel>
+              <StepLabel className="cursor-pointer" onClick={() => setStep(index)}></StepLabel>
             </Step>
           ))}
         </Stepper>
@@ -83,12 +88,9 @@ function SignleDepartment() {
         <div>
           {step === 0 && (
             <div className="w-1/2 my-5">
-              <TextField
-                fullWidth
-                label="Department"
-                variant="outlined"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
+              <DepartmentSelect
+                department={department}
+                setDepartment={setDepartment}
               />
             </div>
           )}
