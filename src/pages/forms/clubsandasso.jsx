@@ -23,7 +23,7 @@ const steps = [
 function ClubsandAsso() {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [clubName, setClubName] = useState("Connect");
+  const [clubName, setClubName] = useState();
   const [formData, setFormData] = useState({
     form_3_2_2: [],
     form_3_4_2: [],
@@ -41,6 +41,7 @@ function ClubsandAsso() {
     if (step !== steps.length - 1) setStep(step + 1);
     else {
       try {
+        if (!clubName) return toast.error("Please enter club name in step 1");
         await createClub({ clubName, data: formData });
         toast.success("Form Submitted successfully");
         router.push("/dashboard");
@@ -58,9 +59,9 @@ function ClubsandAsso() {
       </div>
       <div className="m-8">
         <Stepper activeStep={step} alternativeLabel className="my-5 mt-7">
-          {steps.map((label) => (
+          {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+              <StepLabel className="cursor-pointer" onClick={() => setStep(index)}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>

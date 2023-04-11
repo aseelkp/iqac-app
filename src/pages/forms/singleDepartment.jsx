@@ -56,14 +56,12 @@ function SignleDepartment() {
   const handleNext = async () => {
     if (step !== steps.length - 1) setStep(step + 1);
     else {
-      try{
-        if(!department){
-          toast.error("Please select a Department in step 1");
-        } else {
+      try {
+        if (!department)
+          return toast.error("Please select a Department in step 1");
         await createSingleDepartment({ department, data: formData });
         toast.success("Form Submitted successfully");
         router.push("/dashboard");
-        }
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
@@ -80,7 +78,10 @@ function SignleDepartment() {
         <Stepper activeStep={step} alternativeLabel className="my-5 mt-7">
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel className="cursor-pointer" onClick={() => setStep(index)}></StepLabel>
+              <StepLabel
+                className="cursor-pointer"
+                onClick={() => setStep(index)}
+              ></StepLabel>
             </Step>
           ))}
         </Stepper>
@@ -115,11 +116,7 @@ function SignleDepartment() {
           >
             Back
           </CustomButton>
-          <CustomButton
-            variant="contained"
-            color="info"
-            onClick={handleNext}
-          >
+          <CustomButton variant="contained" color="info" onClick={handleNext}>
             {step === steps.length - 1 ? "Submit" : "Next"}
           </CustomButton>
         </div>

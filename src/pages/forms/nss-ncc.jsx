@@ -22,7 +22,7 @@ const steps = [
 function NssNcc() {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [clubName, setClubName] = useState("NSS");
+  const [clubName, setClubName] = useState();
   const [formData, setFormData] = useState({
     form_3_4_2: [],
     form_3_4_3: [],
@@ -39,6 +39,7 @@ function NssNcc() {
     if (step !== steps.length - 1) setStep(step + 1);
     else{ 
       try{
+        if (!clubName) return toast.error("Please select club name in step 1");
         await createNssNcc({ clubName, data: formData });
         toast.success("Form Submitted successfully");
         router.push("/dashboard");
@@ -56,9 +57,9 @@ function NssNcc() {
       </div>
       <div className="m-8">
         <Stepper activeStep={step} alternativeLabel className="my-5 mt-7">
-          {steps.map((label) => (
+          {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+              <StepLabel className="cursor-pointer" onClick={() => setStep(index)}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>

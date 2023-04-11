@@ -49,9 +49,9 @@ function PhysicalEdu() {
       </div>
       <div className="m-8">
         <Stepper activeStep={step} alternativeLabel className="my-5 mt-7">
-          {steps.map((label) => (
+          {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+              <StepLabel className="cursor-pointer" onClick={() => setStep(index)}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
