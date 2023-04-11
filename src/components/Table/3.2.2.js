@@ -1,42 +1,36 @@
 const { default: DataTable } = require(".");
 
-const T3_2_2 = () => {
+export const T3_2_2 = ({data}) => {
   const titles = [
     {
       id: 1,
-      name: "Name of the Project/ Endowments, Chairs",
+      name: "Year",
+      field : "year"
+      
     },
     {
       id: 2,
-      name: "Name of the Principal Investigator/Co-investivator",
+      name: "Name of the Workshop/seminar",
+      field : "nameOfWorkshop"
     },
     {
       id: 3,
-      name: "Department of Principal Investigator",
+      name: "Number of participants",
+      field : "numberOfParticipants"
     },
     {
       id: 4,
-      name: "Year Of Award",
+      name: "Date from - to",
+      field : "dateFrom"
     },
     {
       id: 5,
-      name: "Anount Sanctioned",
-    },
-    {
-      id: 6,
-      name: "Duration of the Project",
-    },
-    {
-      id: 7,
-      name: "Name of the Funding Agency",
-    },
-    {
-      id: 8,
-      name: "Type(Govt/Non-Govt)",
+      name: "Link to the activity report on the website",
+      field: "link"
     },
   ];
 
   return (
-     <DataTable titles={titles} data={Data} />
+     <DataTable titles={titles} data={data} />
   );
 };

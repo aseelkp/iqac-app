@@ -9,12 +9,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const NssNcc = () => {
-  const options = ["NSS", "NCC"];
+  const options = [
+    {
+      Label: "NSS",
+      value: "NSS",
+    },
+    {
+      Label: "NCC",
+      value: "NCC",
+    },
+  ];
   const [club, setClub] = useState("NSS");
   const [form3_4_2, setForm3_4_2] = useState([]);
   const [form3_4_34, setForm3_4_34] = useState([]);
-  const [form5_1_3 , setForm5_1_3] = useState([]);
-  
+  const [form5_1_3, setForm5_1_3] = useState([]);
+
   useEffect(() => {
     const dataArr = [];
     const getData = async () => {
@@ -35,7 +44,7 @@ const NssNcc = () => {
     };
     getData();
   }, [club]);
-  
+
   console.log(form3_4_2, "form3_4_2");
   return (
     <div className="w-screen flex items-center justify-center flex-col ">
@@ -49,7 +58,7 @@ const NssNcc = () => {
           />
         </div>
         {form3_4_2 && <T3_4_2 data={form3_4_2} />}
-        {form3_4_34 &&  <T3_4_34 data={form3_4_34} />}
+        {form3_4_34 && <T3_4_34 data={form3_4_34} />}
         {form5_1_3 && <T5_1_3 data={form5_1_3} />}
       </div>
     </div>

@@ -1,29 +1,31 @@
 const { TableContainer, Table } = require("@mui/material");
 const { default: TableHeader } = require("./TableHead");
 const { default: TableContent } = require("./TableContent");
+const { default: DataTable } = require(".");
 
-const T1_1_3 = () => {
+export const T1_1_3 = ({data}) => {
   const titles = [
     {
       id: 1,
       name: "Year",
+      field : "year"
+
     },
     {
       id: 2,
       name: "Name  of teacher participated",
+      field : "nameOfTeacher"
     },
     {
       id: 3,
       name: "Name of the body in which full time teacher participated",
+      field:"nameOfBody"
     },
   ];
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHeader titles={titles} />
-        <TableContent Data={Data} titles={titles} />
-      </Table>
-    </TableContainer>
+    <div className="w-full mt-3">
+      { <DataTable titles={titles} data={data}  />}
+    </div>
   );
 };
