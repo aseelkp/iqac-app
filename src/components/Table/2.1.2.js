@@ -2,9 +2,6 @@ import * as React from "react";
 import DataTable from ".";
 
 export default function T4_1_3({ data }) {
-
-
-
   const titles = [
     {
       id: 1,
@@ -24,7 +21,8 @@ export default function T4_1_3({ data }) {
   ];
   return (
     <div className="w-full mt-3">
-      { <DataTable titles={titles} data={data}  />}
+      <h1 className="self-start text-2xl mb-2">4.1.3</h1>
+      {<DataTable titles={titles} data={data} />}
     </div>
   );
 }

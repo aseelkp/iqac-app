@@ -1,6 +1,6 @@
 const { default: DataTable } = require(".");
 
-export const T3_4_34 = ({data}) => {
+export const T3_4_34 = ({ data }) => {
   const titles = [
     {
       id: 1,
@@ -30,6 +30,9 @@ export const T3_4_34 = ({data}) => {
   ];
 
   return (
-     <DataTable titles={titles} data={data} />
+    <div className="w-full">
+      <h1 className="self-start text-2xl mb-2">3.4.3 & 3.4.4</h1>
+      <DataTable titles={titles} data={data} />
+    </div>
   );
 };

@@ -2,7 +2,6 @@ import * as React from "react";
 import DataTable from ".";
 
 export default function T4_1_4({ data }) {
-
   const titles = [
     {
       id: 1,
@@ -25,19 +24,20 @@ export default function T4_1_4({ data }) {
       field: "totExpenditure",
     },
     {
-        id: 5,
-        name: "Expenditure on maintenace of academic facilities (excluding salary for human resources)",
-        field: "expOnAcademicFacilities",
+      id: 5,
+      name: "Expenditure on maintenace of academic facilities (excluding salary for human resources)",
+      field: "expOnAcademicFacilities",
     },
     {
-        id: 6,
-        name: "Expenditure on maintenance of non-academic facilities (excluding salary for human resources)",
-        field: "expOnPhysicalFacilities",
+      id: 6,
+      name: "Expenditure on maintenance of non-academic facilities (excluding salary for human resources)",
+      field: "expOnPhysicalFacilities",
     },
   ];
   return (
     <div className="w-full mt-3">
-      { <DataTable titles={titles} data={data}  />}
+      <h1 className="self-start text-2xl mb-2">4.1.4</h1>
+      {<DataTable titles={titles} data={data} />}
     </div>
   );
 }

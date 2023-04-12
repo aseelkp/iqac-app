@@ -1,36 +1,38 @@
 const { default: DataTable } = require(".");
 
-export const T3_2_2 = ({data}) => {
+export const T3_2_2 = ({ data }) => {
   const titles = [
     {
       id: 1,
       name: "Year",
-      field : "year"
-      
+      field: "year",
     },
     {
       id: 2,
       name: "Name of the Workshop/seminar",
-      field : "nameOfWorkshop"
+      field: "nameOfWorkshop",
     },
     {
       id: 3,
       name: "Number of participants",
-      field : "numberOfParticipants"
+      field: "numberOfParticipants",
     },
     {
       id: 4,
       name: "Date from - to",
-      field : "dateFrom"
+      field: "dateFrom",
     },
     {
       id: 5,
       name: "Link to the activity report on the website",
-      field: "link"
+      field: "link",
     },
   ];
 
   return (
-     <DataTable titles={titles} data={data} />
+    <div className="w-full">
+      <h1 className="self-start text-2xl mb-2">3.2.2</h1>
+      <DataTable titles={titles} data={data} />
+    </div>
   );
 };

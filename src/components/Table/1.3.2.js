@@ -46,6 +46,8 @@ export const T1_3_2 = ({data}) => {
 
   return (
     <div className="w-full mt-3">
+            <h1 className="self-start text-2xl mb-2">1.3.2</h1>
+
     { <DataTable titles={titles} data={data}  />}
   </div>
   );

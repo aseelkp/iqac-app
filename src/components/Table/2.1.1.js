@@ -27,6 +27,7 @@ export default function T2_1_1({ data }) {
   ];
   return (
     <div className="w-full mt-3">
+            <h1 className="self-start text-2xl mb-2">2.1.1</h1>
       { <DataTable titles={titles} data={data}  />}
     </div>
   );
