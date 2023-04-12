@@ -14,9 +14,7 @@ import { createNssNcc } from "@/services/dataService";
 
 const steps = [
   "Awards and recognitions",
-  "Extension and outreach programmes",
   "Capacity building and skill enhancement programmes",
-  "No. of students benefited by guidance and counselling",
 ];
 
 function NssNcc() {
@@ -86,9 +84,12 @@ function NssNcc() {
             <ExtensionPrograms {...props} />
             </div>
             )}
-          {step === 1 && <ExtensionPrograms {...props} />}
-          {step === 2 && <CapacityBuilding {...props} />}
-          {step === 3 && <GuidanceAndCounselling {...props} />}
+          {step === 1 && (
+            <div className="flex gap-10 flex-col">
+            <CapacityBuilding {...props} />
+            <GuidanceAndCounselling {...props} />
+            </div>
+            )}
         </div>
         <div className="flex justify-end mt-5">
           <CustomButton
