@@ -30,7 +30,7 @@ const Dashboard = () => {
     // },
     {
       title: "Main Department",
-      path: "data/mainDepartments",
+      path: "data/mainDepartment",
     },
     // {
     //   title: "IQAC",
