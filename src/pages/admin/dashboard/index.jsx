@@ -10,19 +10,19 @@ const Dashboard = () => {
   const titlesConfig = [
     {
       title: "NSS / NCC",
-      path: "admin/data/nss-ncc",
+      path: "data/nss-ncc",
     },
     {
       title: "Single Department",
-      path: "admin/data/singleDepartment",
+      path: "data/singleDepartment",
     },
     {
       title: "Physical Education",
-      path: "admin/data/physicalEducation",
+      path: "data/physicalEducation",
     },
     {
       title: "Office",
-      path: "admin/data/office",
+      path: "data/office",
     },
     // {
     //   title: "Library",
@@ -30,22 +30,22 @@ const Dashboard = () => {
     // },
     {
       title: "Main Department",
-      path: "admin/data/mainDepartments",
+      path: "data/mainDepartments",
     },
     // {
     //   title: "IQAC",
-    //   path: "admin/data/iqac",
+    //   path: "data/iqac",
     // },
     {
       title: "Clubs and Associations",
-      path: "admin/data/clubsandasso",
+      path: "data/clubsandasso",
     },
   ];
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("user-auth")) router.push("/dashboard");
-  //   else if (!localStorage.getItem("admin-auth")) router.push("/admin/login");
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("user-auth")) router.push("/dashboard");
+    else if (!localStorage.getItem("admin-auth")) router.push("/admin/login");
+  }, []);
 
   return (
     <Layout page={0}>
