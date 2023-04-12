@@ -34,22 +34,6 @@ const steps = [
   "1.2.2",
   "1.3.2",
   "1.3.3",
-  "2.6.3",
-  "3.1.1",
-  "3.2.2",
-  "3.3.2",
-  "3.3.3",
-  "3.4.2",
-  "3.4.3",
-  "3.5.1",
-  "3.5.2",
-  "5.1.3",
-  "5.1.4",
-  "5.2.1",
-  "5.2.2",
-  "6.3.2",
-  "6.3.3",
-  "6.3.4",
 ];
 
 function SignleDepartment() {
@@ -107,26 +91,42 @@ function SignleDepartment() {
               />
             </div>
           )}
-          {step === 0 && <Form1 {...props} />}
-          {step === 1 && <Form2 {...props} />}
-          {step === 2 && <Form3 {...props} />}
-          {step === 3 && <Form4 {...props} />}
-          {step === 4 && <Form5 {...props} />}
-          {step === 5 && <Form6 {...props} />}
-          {step === 6 && <Form7 {...props} />}
-          {step === 7 && <Form8 {...props} />}
-          {step === 8 && <Form9 {...props} />}
-          {step === 9 && <Form10 {...props} />}
-          {step === 10 && <Form11 {...props} />}
-          {step === 11 && <Form12 {...props} />}
-          {step === 12 && <Form13 {...props} />}
-          {step === 13 && <Form14 {...props} />}
-          {step === 14 && <Form15 {...props} />}
-          {step === 15 && <Form16 {...props} />}
-          {step === 16 && <Form17 {...props} />}
-          {step === 17 && <Form19 {...props} />}
-          {step === 18 && <Form20 {...props} />}
-          {step === 19 && <Form21 {...props} />}
+          {step === 0 && (
+            <div className="flex flex-col gap-10">
+              <Form1 {...props} />
+              <Form2 {...props} />
+              <Form3 {...props} />
+              <Form4 {...props} />
+              <Form5 {...props} />
+            </div>
+          )}
+          {step === 1 && (
+            <div className="flex flex-col gap-10">
+              <Form6 {...props} />
+              <Form7 {...props} />
+              <Form8 {...props} />
+              <Form9 {...props} />
+              <Form10 {...props} />
+            </div>
+          )}
+          {step === 2 && (
+            <div className="flex flex-col gap-10">
+              <Form11 {...props} />
+              <Form12 {...props} />
+              <Form13 {...props} />
+              <Form14 {...props} />
+              <Form15 {...props} />
+            </div>
+          )}
+          {step === 3 && (
+            <div className="flex flex-col gap-10">
+              <Form16 {...props} />
+              <Form17 {...props} />
+              <Form19 {...props} />
+              <Form20 {...props} />
+              <Form21 {...props} />
+            </div>
+          )}
         </div>
         <div className="flex justify-end mt-5">
           <CustomButton
